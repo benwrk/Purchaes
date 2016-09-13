@@ -1,10 +1,10 @@
 #Purchaes
 
-- ##Backend
+- __Backend__
  - Django 
-- ##ofntend
+- __ofntend__
  - React
-- Server
+- __Server__
  - Digital 
  
 ## Scope of the project
