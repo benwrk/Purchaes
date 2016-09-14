@@ -2,7 +2,7 @@
 
 - __Backend__
  - Django 
-- __ofntend__
+- __Frontend__
  - React
 - __Server__
  - Digital 
