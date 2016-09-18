@@ -55,3 +55,28 @@
  - add order
  - register
  - view market order
+
+ Software Requirements Specification - SRS
+
+1. Cover Page
+2. Table of Contents
+3. Introduction
+ - Purpose of the SRS
+ - Problems statement
+ - Team project information
+4. Statement of functional requirements
+ - Description of the system function requirements
+ - Cycle 1 requirements
+ - Cycle 2 requirements
+ - Top-down structure
+5. Definition of rules used in the requirements
+6. External interface requirements
+ - User interface
+ - Screen layouts
+7. Design/implementation constraints
+ - Standards compliance
+ - Development constraints
+8. Specific system requirements
+ - Documentation
+ - Compatibility
+9. References and sources of information
