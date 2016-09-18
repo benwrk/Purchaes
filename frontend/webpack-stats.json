@@ -1,0 +1,1 @@
+{"status":"error","error":"ModuleNotFoundError","message":"Module not found: Error: Cannot resolve 'file' or 'directory' ./client/index in /home/wsp/purchaes/frontend","publicPath":"http://localhost:3000/assets/bundles/"}
