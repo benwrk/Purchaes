@@ -1,7 +1,7 @@
 # Purchaes
 
  - [info](docs/info.md)
- - [references](doc/refferences.md)
+ - [references](doc/references.md)
  
 ## contributor
 
