@@ -9,7 +9,7 @@ module.exports = {
   entry: [
     'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server',
-    './client/index'
+    './index'
   ],
   output: {
     path: path.resolve('./static/'),
