@@ -7,3 +7,10 @@ index.rst
 make.bat
 Makefile
 .idea
+backend/API/__pycache__/
+backend/API/migrations/0001_initial.py
+backend/API/migrations/0002_book.py
+backend/API/migrations/__pycache__/
+backend/API/static/images/
+backend/Purchaes/__pycache__/wsgi.cpython-35.pyc
+backend/book/
