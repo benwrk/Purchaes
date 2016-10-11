@@ -1,18 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {% include 'API/form-template.html' %}
-        <div class="form group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-success">Submit</button>
-            </div>
+{% extends 'base.html' %}
+{% block header %}listing{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-6 col-xs-12 col-sm-8 col-lg-6">
+            <form class="form-group" action="{% url 'api:item-add' %}" method="post">
+                {% csrf_token %}
+                name
+                :<br>
+                <input class="form-control" type="text" name="name"><br>
+                description:<br>
+                <input class="form-control" type="text" name="description"><br>
+                Images:<br>
+                <input class="form" type="file" name="picture"><br>
+                <input class="btn btn-primary" type="submit" value="submit">
+            </form>
         </div>
-    </form>
-</body>
-</html>
+{% endblock %}
