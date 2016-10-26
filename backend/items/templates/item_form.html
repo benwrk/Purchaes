@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block header %}listing{% endblock %}
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-6 col-xs-12 col-sm-8 col-lg-6">
+            <form class="form-group" action="{% url 'item:item-add' %}" method="post">
+                {% csrf_token %}
+                name:<br>
+                <input class="form-control" type="text" name="name"><br>
+                description:<br>
+                <input class="form-control" type="text" role="combobox" name="description"><br>
+                website:<br>
+                <input class="form-control" type="url" role="combobox" name="url"><br>
+                time:<br>
+                <input class="form-control" type="url" role="combobox" name="url"><br>
+                price:<br>
+                <input class="form-control" type="url" role="combobox" name="url"><br>
+                Images:<br>
+                <input class="form" type="file" name="picture" accept="image/*"><br>
+                Category:
+                <select class="form-control" name="size">
+                    <option value="">Select</option>
+                    <option value="s">Food</option>
+                    <option value="m">Home</option>
+                    <option value="l">Electronic</option>
+                    <option value="xl">Hardware</option>
+                </select>
+                <input class="btn btn-primary" type="submit" value="submit">
+            </form>
+        </div>
+{% endblock %}

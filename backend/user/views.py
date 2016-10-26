@@ -2,41 +2,42 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.views.generic import View
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
-from .forms import UserForm, BookFOrm
-from .models import Item, Book
+from .forms import UserForm, BookForm
+from .models import Book
 
 
 def index(request):
     return render(request, "index.html")
 
 
-def login(request):
+def user_login(request):
     username = request.POST['username']
     password = request.POST['password']
     user = authenticate(username=username, password=password)
     if user is not None:
         if user.is_active:
             login(request, user)
-            return render(request, 'index.html', {'user': User})
-    return render(request, 'index.html', {'user': User, 'error': True})
+            return render(request, 'index.html')
+    return render(request, 'index.html', {'error': True})
 
 
-def logout(request):
-    return render(request, 'index.html', {'user': User})
+def user_logout(request):
+    logout(request)
+    return redirect("api:index")
 
 
-class UserFormView(View):
+class Register(View):
     form_class = UserForm
     template_name = 'registration_form.html'
 
     # display blank form
     def get(self, request):
         form = self.form_class(None)
-        return render(request, self.template_name, {'form': form, 'user': User})
+        return render(request, self.template_name, {'form': form, 'user': ""})
 
     # process form data
     def post(self, request):
@@ -58,28 +59,22 @@ class UserFormView(View):
             if user is not None:
 
                 if user.is_active:
-                    login(request, user)
+                    user_login(request, user)
                     return redirect("api:index")
-        return render(request, self.template_name, {'form': form, 'user': User})
+        return render(request, self.template_name, {'form': form})
 
 
-class ItemCreate(CreateView):
-    model = Item
-    fields = ['title', 'description']
-
-    def get(self, request):
-        return render(request, 'item_form.html', {})
 
 
 # not use
 
 class BookForm(View):
-    form_class = BookFOrm
+    form_class = BookForm
     template_name = 'book_form.html'
 
     def get(self, request):
         form = self.form_class(None)
-        return render(request, self.template_name, {'form': form, 'Books': Book.objects.all(), 'user': User})
+        return render(request, self.template_name, {'form': form, 'Books': Book.objects.all()})
 
     def post(self, request):
         book = Book()
@@ -92,7 +87,7 @@ class BookForm(View):
         book.author = request.POST['author']
         book.save()
         form = self.form_class(None)
-        return render(request, self.template_name, {'form': form, 'Books': Book.objects.all(), 'user': User})
+        return render(request, self.template_name, {'form': form, 'Books': Book.objects.all()})
 
 
 def update(request):
@@ -109,7 +104,7 @@ def delete(request):
     id = request.GET.get('id')
     b = Book.objects.get(book_id=id)
     b.delete()
-    return render(request, 'book_form.html', {'Books': Book.objects.all(), 'user': User})
+    return render(request, 'book_form.html', {'Books': Book.objects.all()})
 
 
 class BookDelete(View):
@@ -122,10 +117,10 @@ class BookDelete(View):
         print(b)
         b.delete()
         form = self.form_class(None)
-        return render(request, self.template_name, {'form': form, 'Books': Book.objects.all(), 'user': User})
+        return render(request, self.template_name, {'form': form, 'Books': Book.objects.all()})
 
     def post(self, request):
         b = Book.objects.get(book_id=request.POST['delete'])
         b.delete()
         form = self.form_class(None)
-        return render(request, self.template_name, {'form': form, 'Books': Book.objects.all(), 'user': User})
+        return render(request, self.template_name, {'form': form, 'Books': Book.objects.all()})

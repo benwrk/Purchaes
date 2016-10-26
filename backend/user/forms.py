@@ -11,7 +11,7 @@ class UserForm(forms.ModelForm):
         fields = ['username', 'email', 'password', ]
 
 
-class BookFOrm(forms.ModelForm):
+class BookForm(forms.ModelForm):
     class Meta:
         model = Book
         fields = ['book_id', 'isbn', 'book_name', 'price', 'author']

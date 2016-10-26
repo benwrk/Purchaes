@@ -33,6 +33,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='item',
             name='tag',
-            field=models.ManyToManyField(to='API.Tag'),
+            field=models.ManyToManyField(to='user.Tag'),
         ),
     ]

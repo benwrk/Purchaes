@@ -1,4 +1,3 @@
-react
 django
 djangorestframework
-
+django[argon2]
