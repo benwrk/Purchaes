@@ -27,7 +27,7 @@ def user_login(request):
 
 def user_logout(request):
     logout(request)
-    return redirect("api:index")
+    return redirect("user:index")
 
 
 class Register(View):
@@ -60,7 +60,7 @@ class Register(View):
 
                 if user.is_active:
                     user_login(request, user)
-                    return redirect("api:index")
+                    return redirect("user:index")
         return render(request, self.template_name, {'form': form})
 
 

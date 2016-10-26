@@ -1,6 +1,5 @@
 from django.db import models
 from django.core.urlresolvers import reverse
-
 # Create your models here.
 class Tag(models.Model):
     title = models.CharField(max_length=50)
@@ -8,6 +7,7 @@ class Tag(models.Model):
 
 class Item(models.Model):
     CATEGORY = (
+        ('none','None'),
         ('Electronic',
          ('computer', 'Computer')),
         ('cloth', 'Cloth'),
@@ -22,8 +22,11 @@ class Item(models.Model):
     description = models.CharField(max_length=500)
     time = models.TimeField(default=3000)
     tag = models.ManyToManyField(Tag)
-    category = models.CharField(max_length=100,choices=CATEGORY)
-    price_min = models.IntegerField()
-    price_max = models.IntegerField()
+    # category = models.CharField(max_length=100,choices=CATEGORY,default='none')
+    category = models.CharField(max_length=100,default='none')
+    price_min = models.IntegerField(default=0)
+    price_max = models.IntegerField(default=10000000)
+    creator = models.ForeignKey('user.User',default=1)
+
     def get_absolute_url(self):
-        return reverse("api:detail", kwargs={'pk': self.pk})
+        return reverse("item:detail", kwargs={'pk': self.pk})

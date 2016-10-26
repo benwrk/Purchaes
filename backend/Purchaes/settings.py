@@ -55,7 +55,7 @@ MIDDLEWARE_CLASSES = [
 ]
 
 ROOT_URLCONF = 'Purchaes.urls'
-
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
