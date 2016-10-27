@@ -8,7 +8,8 @@ class item_create(View):
     fields = ['title', 'description']
 
     def get(self, request):
-        return render(request, 'item_form.html', {})
+        Item.CATEGORY[0]
+        return render(request, 'item_form.html', {'item':Item})
 
     def post(self, request):
         return render(request, 'index.htmk')
@@ -17,7 +18,7 @@ class item_create(View):
 def item_detail(request):
     id = request.GET.get('id', '')
     item = Item.objects.get(id=id)
-    return render(request,'item_detail',{item:item})
+    return render(request,'item_detail',{'item':item})
 
 
 class item_update(View):

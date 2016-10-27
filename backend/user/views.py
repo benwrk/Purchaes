@@ -11,7 +11,7 @@ from .models import Book
 
 
 def index(request):
-    return render(request, "index.html")
+    return redirect('home:home')
 
 
 def user_login(request):
@@ -21,13 +21,13 @@ def user_login(request):
     if user is not None:
         if user.is_active:
             login(request, user)
-            return render(request, 'index.html')
-    return render(request, 'index.html', {'error': True})
+            return redirect('home:home')
+    return redirect('home:home')
 
 
 def user_logout(request):
     logout(request)
-    return redirect("user:index")
+    return redirect("home:home")
 
 
 class Register(View):
@@ -60,7 +60,7 @@ class Register(View):
 
                 if user.is_active:
                     user_login(request, user)
-                    return redirect("user:index")
+                    return redirect("home:home")
         return render(request, self.template_name, {'form': form})
 
 

@@ -10,7 +10,7 @@
         </div>
         <div class="row">
             <div class="col-md-6 col-xs-12 col-sm-8 col-lg-6">
-                <form class="form-group" action="{% url 'api:register' %}" method="post">
+                <form class="form-group" action="{% url 'user:register' %}" method="post">
                     {% csrf_token %}
                     Username:<br>
                     <input class="form-control" type="text" name="username"><br>
