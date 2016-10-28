@@ -5,5 +5,7 @@ app_name = 'item'
 urlpatterns = [
     url(r'^add/$', views.item_create.as_view(), name='item-add'),
     url(r'^detail/$', views.item_detail,name='item-detail'),
-    url(r'^edit/$',views.item_update,name='item-update')
+    url(r'^edit/$',views.item_update,name='item-update'),
+    url(r'^category/$',views.item_category,name='item-category'),
+    url(r'^search/$',views.item_search,name='item-search')
 ]

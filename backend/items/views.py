@@ -8,10 +8,15 @@ class item_create(View):
     fields = ['title', 'description']
 
     def get(self, request):
-        Item.CATEGORY[0]
-        return render(request, 'item_form.html', {'item':Item})
+        return render(request, 'item_form.html')
 
     def post(self, request):
+        name = request.POST['name']
+        description = request.POST['description']
+        tag = request.POST['tag']
+        category = request.POST['category']
+        name = request.POST['name']
+        name = request.POST['name']
         return render(request, 'index.htmk')
 
 
@@ -26,3 +31,11 @@ class item_update(View):
         return render(request,'item_update')
     def post(self,request):
         return redirect('item:detail')
+
+
+def item_category(request):
+    return None
+
+
+def item_search(request):
+    return None

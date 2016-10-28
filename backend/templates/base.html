@@ -67,17 +67,25 @@
                     </a>
                 </li>
                 <li class="">
-                    <a href="{% url 'user:index' %}">
+                    <a href="{% url 'item:item-add' %}">
                         <span class="glyphicon glyphicon-cd" aria-hidden="true"></span>&nbsp;
-                        Home
+                        listing
                     </a>
                 </li>
             </ul>
 
-            <form class="navbar-form navbar-left" role="search" mothod="get" action="#">
+            <form class="navbar-form navbar-left" role="search" mothod="get" action="{% url 'item:item-search' %}">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="q" value="">
+                    <input type="text" class="form-control" name="keywords" value="" placeholder="Search">
+                    <select class="form-control" name="category">
+                        <option value="All">All</option>
+                        <option value="Food">Food</option>
+                        <option value="Home">Home</option>
+                        <option value="Electronic">Electronic</option>
+                        <option value="Hardware">Hardware</option>
+                    </select>
                 </div>
+
                 <button type="submit" class
                 "btn btn-defualt">Search</button>
             </form>
@@ -126,26 +134,26 @@
 <div class="col-md-2" role="complementary">
 {#    affix#}
     <nav class="bs-docs-sidebar hidden-print hidden-sm hidden-xs ">
-        <ul class="nav nav-pills nav-stacked">
+        <ul class="nav nav-pills nav-stacked  inbox-divider">
             <li class="">
-                <a href="#glyphicons-glyphs">Department</a>
+                <a href="{% url 'item:item-search' %}?keywords=Food">Food</a>
             </li>
-            <li class="">
-                <a data-toggle="collapse"  href="#menu1">Department</a>
+            <li class="nav-pills nav-stacked labels-info ">
+                <a data-toggle="collapse"  href="#menu1"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>&nbsp;Home</a>
                 <ul id="menu1" class="nav  collapse">
                     <li class="">
-                        <a href="">test1</a>
+                        <a href="">Kitchen</a>
                     </li>
                     <li class="">
-                        <a href="">test2</a>
+                        <a href="">Living Room</a>
                     </li>
                 </ul>
             </li>
             <li class="">
-                <a href="#glyphicons-glyphs">Department</a>
+                <a href="#glyphicons-glyphs">Electronic</a>
             </li>
             <li class="">
-                <a href="#glyphicons-glyphs">Department</a>
+                <a href="#glyphicons-glyphs">Hardware</a>
             </li>
         </ul>
     </nav>
