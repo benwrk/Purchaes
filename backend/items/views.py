@@ -18,13 +18,20 @@ class item_create(View):
         category = request.POST['category']
         name = request.POST['name']
         name = request.POST['name']
+        image = request.FILES
+        # image.url to get a url
+
         return redirect('item:item-detail')
 
 
 def item_detail(request):
     id = request.GET.get('id', '')
-    item = Item.objects.get(id=id)
-    return repr(render(request, 'item_detail.html', {'item': item}))
+
+    item = Item.objects.all()
+    # if  id is  None:
+    #     item =Item.objects.get(id=id)
+    print(item)
+    return render(request, 'item_detail.html', {'item': item})
 
 
 class item_update(View):
@@ -52,3 +59,8 @@ class item_offering(View):
         return render(request,'item_offering.html')
     def post(self,request):
         return render(request,'item_offering.html')
+
+def handle_uploaded_file(f):
+    with open('some/file/name.txt', 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)

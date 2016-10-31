@@ -19,6 +19,7 @@ class Item(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=200)
     image_url = models.CharField(max_length=300)
+    # docfile = models.FileField(upload_to='documents/%Y/%m/%d')
     description = models.CharField(max_length=500)
     time = models.TimeField(default=3000)
     tag = models.ManyToManyField(Tag)
