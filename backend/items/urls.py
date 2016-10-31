@@ -7,5 +7,6 @@ urlpatterns = [
     url(r'^detail/$', views.item_detail,name='item-detail'),
     url(r'^edit/$',views.item_update,name='item-update'),
     url(r'^category/$',views.item_category,name='item-category'),
+    url(r'^offering/$',views.item_offering.as_view(),name='item-offering'),
     url(r'^search/$',views.item_search,name='item-search')
 ]
