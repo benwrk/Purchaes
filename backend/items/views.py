@@ -53,8 +53,9 @@ def item_category(request):
 def item_search(request):
     keyword = request.GET.get('keyword','')
 
+
     items = Item.objects.filter(title=keyword)
-    return render(request,'item_search.html',{'item':Item})
+    return render(request,'item_search.html',{'item':items})
 
 
 class item_offering(View):
