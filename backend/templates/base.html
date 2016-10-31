@@ -131,6 +131,7 @@
     </div>
     </div>
 </nav>
+
 <div class="col-md-2" role="complementary">
 {#    affix#}
     <nav class="bs-docs-sidebar hidden-print hidden-sm hidden-xs ">
@@ -157,7 +158,10 @@
             </li>
         </ul>
     </nav>
+    {% block side-nav %}
+    {% endblock %}
 </div>
+
 <div class="col-md-10" role="main">
     {% block body %}{% endblock %}
 </div>
