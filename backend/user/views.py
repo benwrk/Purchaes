@@ -63,7 +63,11 @@ class Register(View):
                     return redirect("home:home")
         return render(request, self.template_name, {'form': form})
 
-
+def user_profile(request):
+    from .models import User
+    print(User.objects)
+    user = User.objects.get(username='wit')
+    return render(request, 'profile_view.html', {'user': user})
 
 
 # not use
@@ -124,3 +128,5 @@ class BookDelete(View):
         b.delete()
         form = self.form_class(None)
         return render(request, self.template_name, {'form': form, 'Books': Book.objects.all()})
+
+

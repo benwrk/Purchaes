@@ -2,7 +2,6 @@
 {% load static %}
 {% block header %}listing{% endblock %}
 {% block body %}
-    <script src="{% static "items/bootstrapTagsInput/bootstrap-tagsinput.js" %}"></script>
     <div class="row">
         <div class="col-md-6 col-xs-12 col-sm-8 col-lg-6">
             <form class="form-group" action="{% url 'item:item-add' %}" method="post">

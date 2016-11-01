@@ -21,8 +21,10 @@
             crossorigin="anonymous"></script>
 
     <link rel="stylesheet" type="text/css" href="{% static 'style/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'style/base.css' %}">
 
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Pacifico">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Amaranth">
 
 
 </head>
@@ -93,8 +95,8 @@
 
             <!-- The drop down menu -->
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{% url 'user:register' %}">register</a></li>
                 {% if not user.is_authenticated %}
+                    <li><a href="{% url 'user:register' %}">register</a></li>
                     <li class="dropdown">
                         <a class="dropdown" href="#" data-toggle="dropdown"><strong>Login</strong></a>
                         <ul class="dropdown-menu" style="padding: 15px; padding-bottom: 15px;">
@@ -118,6 +120,7 @@
                         </ul>
                     </li>
                 {% else %}
+                    <li><a href="{% url 'user:profile' %}">profile</a></li>
                     <li class="">
                         <a href="{% url 'user:logout' %}">
                             <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;

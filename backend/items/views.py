@@ -40,9 +40,13 @@ class item_update(View):
             id = request.GET.get('get','')
             user = request.user
             item = Item.objects.get(id=id)
-            return render(request,'item_update.html',{'item':item})
+            if user.name == item.creator:
+                return render(request,'item_update.html',{'item':item})
+            else:
+                return render(request,'item_update.html',{})
         #alert to login
     def post(self,request):
+
         return redirect('item:detail')
 
 
