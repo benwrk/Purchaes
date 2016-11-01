@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
-from .models import Item
+from .models import Item, Tag
 from django.views.generic import View
+from user.models import User
 from django.views.generic import DetailView
 # Create your views here.
 
@@ -12,15 +13,38 @@ class item_create(View):
         return render(request, 'item_form.html')
 
     def post(self, request):
-        name = request.POST['name']
-        description = request.POST['description']
-        tag = request.POST['tag']
-        category = request.POST['category']
-        name = request.POST['name']
-        name = request.POST['name']
-        image = request.FILES
-        # image.url to get a url
+        if request.user.is_authenticated:
+            title = request.POST['name']
+            image_url = request.POST['image-url']
+            image = request.FILES
+            description = request.POST['description']
+            time = request.POST['time']
+            if Tag.objects.filter(title=request.POST['tag']).count() >0:
+                tag = Tag.objects.get(title=request.POST['tag'])
+            else:
+                tag = Tag()
+                tag.title = request.POST['tag']
+                tag.save()
+            print(tag)
+            # category = models.CharField(max_length=100,choices=CATEGORY,default='none')
+            category = request.POST['category']
+            price_min = request.POST['price-min']
+            price_max = request.POST['price-max']
+            creator = User.objects.get(username=request.user.username)
 
+            # image.url to get a url
+            item = Item()
+            item.title = title
+            item.image_url =image_url
+            item.image = image
+            item.description = description
+            item.time = time
+            item.category = category
+            item.price_min = price_min
+            item.price_max = price_max
+            item.creator = creator
+            item.save()
+            item.tag.add(tag)
         return redirect('item:item-detail')
 
 

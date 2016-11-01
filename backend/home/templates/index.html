@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 {% block title %}main{% endblock %}
 {% block body %}
     <div id="carousel-home" class="carousel slide" data-ride="carousel" >
@@ -53,14 +54,31 @@
 
     <div class="row" style="margin: 10px 10px 10px 10px;">
       <div class="col-sm-6 col-md-4">
-        <div class="thumbnail">
+        <div class="thumbnail" onclick="location.href='{% url 'item:item-detail'%}?id=1'">
           <img src="https://s-media-cache-ak0.pinimg.com/564x/34/5d/c6/345dc6d01d55b4b149b20b5dbfc72b12.jpg" alt="..." style="border-radius: 5px; ">
           <div class="caption">
-            <h3>Thumbnail label</h3>
-            <p>...</p>
-            <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+            <h3>motorcycle</h3>
           </div>
         </div>
+
+      </div>
+     <div class="col-sm-6 col-md-4">
+        <div class="thumbnail" onclick="location.href='{% url 'item:item-detail'%}?id=1'">
+          <img src="{% static 'images/3x4x100.png' %}" style="border-radius: 5px; ">
+          <div class="caption">
+            <h3>motorcycle</h3>
+          </div>
+        </div>
+
+      </div>
+     <div class="col-sm-6 col-md-4">
+        <div class="thumbnail" onclick="location.href='{% url 'item:item-detail'%}?id=1'">
+          <img src="https://s-media-cache-ak0.pinimg.com/564x/34/5d/c6/345dc6d01d55b4b149b20b5dbfc72b12.jpg" alt="..." style="border-radius: 5px; ">
+          <div class="caption">
+            <h3>motorcycle</h3>
+          </div>
+        </div>
+
       </div>
     </div>
 {% endblock %}
