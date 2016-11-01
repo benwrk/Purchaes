@@ -52,11 +52,15 @@ def item_category(request):
 
 def item_search(request):
     keyword = request.GET.get('keyword','')
-
-
     items = Item.objects.filter(title=keyword)
-    return render(request,'item_search.html',{'item':items})
+    items2 = Item.objects.filter(category=keyword)
+    return render(request,'item_search.html',{'items':items})
 
+
+def item_search_api(request):
+    keyword = request.GET.get('keyword', '')
+    items = Item.objects.filter(title=keyword)
+    return {'items':items}
 
 class item_offering(View):
     def get(self,request):
@@ -68,3 +72,5 @@ def handle_uploaded_file(f):
     with open('some/file/name.txt', 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
+
+
