@@ -7,28 +7,41 @@ from user.models import User
 from django.views.generic import DetailView
 # Create your views here.
 def tag_check(input):
-    if Tag.objects.filter(title=input).count() > 0:
-        return Tag.objects.get(title=input)
-    else:
+    print(input)
+    try:
+        print('1')
+        tag =  Tag.objects.get(name=input)
+        print(tag)
+    except Tag.DoesNotExist:
+        print('0')
         tag = Tag()
         tag.title = input
         tag.save()
-        return tag
+    return tag
+
+def brand_check(name):
+    if Brand.objects.filter(name=name).count() > 0:
+        return Brand.objects.get(name=name)
+    else:
+        brand = Brand()
+        brand.name = name
+        brand.save()
+        return brand
 def category_check(name):
-    if Category.objects.filter(title=name).count() > 0:
-        return Category.objects.get(title=name)
+    if Category.objects.filter(name=name).count() > 0:
+        return Category.objects.get(name=name)
     else:
         category = Category()
         category.name = name
         category.save()
         return category
 
-def custom_redirect(url_name, *args, **kwargs):
+def custom_redirect(url_name, parameter ):
     from django.core.urlresolvers import reverse
     import urllib
-    url = reverse(url_name, args = args)
-    params = urllib.urlencode(kwargs)
-    return HttpResponseRedirect(url + "?%s" % params)
+    url = reverse(url_name)
+
+    return HttpResponseRedirect(url + "?%s" % parameter)
 
 class item_create(View):
     model = Item
@@ -45,11 +58,12 @@ class item_create(View):
                 item = Item()
                 item.name = request.POST['name']
                 item.description = request.POST['description-item']
-                item.brand = request.POST['description']
+                item.brand = brand_check(request.POST['brand'])
                 item.category = category_check(request.POST['category'])
-                item = Item()
-                if len(request.FILES.getList('image'))>0:
-                    for i in  request.FILES.getList('image'):
+                item.tags.add(tag_check(request.POST['tag-item']))
+                item.save()
+                if len(request.FILES.getlist('image'))>0:
+                    for i in  request.FILES.getlist('image'):
                         image = Image()
                         image.image = i
                         image.save()
@@ -59,18 +73,18 @@ class item_create(View):
                     image.image = request.FILES.get('image')
                     image.save()
                     item.image.add(image)
-                item.tags.add(tag_check(request.POST['tag-item']))
+
 
             listing = Listing()
             listing.valid_for = request.POST['valid_for']
             listing.title = request.POST['title']
-            listing.description = request.POST['description-listing']
+            listing.description = request.POST['description']
             listing.item = item
             listing.owner = User.objects.get(username=request.user.username)
             listing.max_accepted_price = request.POST['max_accepted_price']
             listing.save()
             listing.tags.add = tag_check(request.POST['tag-listing'])
-            return custom_redirect('item:item-detail' , id = listing.id)
+            return custom_redirect('item:item-detail' , 'id='+str(listing.id))
         return redirect('item-item-create')
 
 def item_detail(request):
@@ -97,7 +111,7 @@ class item_update(View):
         listing.valid_for = request.POST['valid_for']
         listing.title = request.POST['title']
         listing.description = request.POST['description-listing']
-        return custom_redirect('item:item-detail','',id=listing.id)
+        return custom_redirect('item:item-detail','id='+str(listing.id))
 
 
 def item_category(request):

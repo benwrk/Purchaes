@@ -7,20 +7,24 @@
         <div class="col-md-6 col-xs-12 col-sm-8 col-lg-6">
             <form class="form-group" action="{% url 'item:item-add' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                name:<br>
+                Listing title:<br>
+                <input class="form-control" type="text" name="title"><br>
+                Listing Description:<br>
+                <input class="form-control" type="text" name="description"><br>
+                valid for(Hour):<br>
+                <input class="form-control" type="number" name="valid_for"><br>
+                Listing tag:<br>
+                <input class="form-control" type="text" role="combobox" name="tag-listing"><br>
+                Item name:<br>
                 <input class="form-control" type="text" name="name"><br>
-                description:<br>
-                <input class="form-control" type="text" role="combobox" name="description"><br>
-                image url:<br>
-                <input class="form-control" type="text" role="combobox" name="image-url"><br>
-                time:<br>
-                 <input type="time" name="time"><br>
-                price:<br>
-                <input class="form-control" type="text" role="combobox" name="url"><br>
+                Item description:<br>
+                <input class="form-control" type="text" name="description-item"><br>
+                Band:<br>
+                <input class="form-control" type="text" name="brand"><br>
                 Images:<br>
-                <input class="form" type="file" name="picture" accept="image/*"><br>
-                Tag:
-                <input class="form-control" type="text" role="combobox" name="tag"><br>
+                <input class="form" type="file" name="image" accept="image/*" multiple><br>
+                Item tag:<br>
+                <input class="form-control" type="text" role="combobox" name="tag-item"><br>
                 Category:<br>
                 <select class="form-control" name="category">
                     <option value="">Select</option>
@@ -29,11 +33,8 @@
                     <option value="Electronic">Electronic</option>
                     <option value="Hardware">Hardware</option>
                 </select>
-
-                    <label for="price-min">Min Price:</label>
-                    <input type="range" name="price-min" id="price-min" value="200" min="0" max="1000">
-                    <label for="price-max">Max Price:</label>
-                    <input type="range" name="price-max" id="price-max" value="800" min="0" max="1000">
+                 <label for="price-max">Max Price:</label>
+                <input type="range" name="max_accepted_price" id="price-max" value="800" min="0" max="1000">
                 <input class="btn btn-primary" type="submit" value="submit">
             </form>
         </div>
