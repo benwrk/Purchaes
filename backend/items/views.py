@@ -121,8 +121,17 @@ def item_category(request):
 def item_search(request):
     keyword = request.GET.get('keyword','')
     listings = Listing.objects.filter(title=keyword)
-    items = Item.objects.filter(category=keyword)
-    return render(request,'item_search.html',{'listings':listings,'item':items})
+    items = Item.objects.filter(category__name=keyword)
+    # print (listings)
+    # print(type(listings))
+    # listings = set(listings)
+    # print(listings)
+    # print(type(listings))
+    # listings = list(listings)
+    # print(listings)
+    # print(type(listings))
+    # print (items)
+    return render(request,'item_search.html',{'listings':listings,'items':items})
 
 class offer_create(View):
     def get(self,request):
