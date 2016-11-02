@@ -6,12 +6,6 @@ from django.core.urlresolvers import reverse
 
 
 
-class Book(models.Model):
-    book_id = models.CharField(max_length=100)
-    isbn = models.CharField(max_length=100)
-    book_name = models.CharField(max_length=100)
-    price = models.IntegerField()
-    author = models.CharField(max_length=100)
-
 class User(models.Model):
-    username = models.CharField(max_length=100)
+    username = models.CharField(max_length=50,unique=True)
+    bio = models.TextField(max_length=1000)

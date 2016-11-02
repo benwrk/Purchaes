@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'rest_framework',
     'home',
     'items',
@@ -68,11 +69,13 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
 ]
-
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/upload')
+MEDIA_URL = '/static/upload/'
 WSGI_APPLICATION = 'Purchaes.wsgi.application'
 
 
@@ -130,6 +133,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "upload"),
 
 ]
 

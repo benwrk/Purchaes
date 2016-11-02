@@ -6,8 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.views.generic import View
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
-from .forms import UserForm, BookForm
-from .models import Book
+from .forms import UserForm
 
 
 def index(request):
@@ -68,65 +67,4 @@ def user_profile(request):
     print(User.objects)
     user = User.objects.get(username='wit')
     return render(request, 'profile_view.html', {'user': user})
-
-
-# not use
-
-class BookForm(View):
-    form_class = BookForm
-    template_name = 'book_form.html'
-
-    def get(self, request):
-        form = self.form_class(None)
-        return render(request, self.template_name, {'form': form, 'Books': Book.objects.all()})
-
-    def post(self, request):
-        book = Book()
-
-        # cleaned (normalized) data
-        book.book_id = request.POST['book_id']
-        book.isbn = request.POST['isbn']
-        book.book_name = request.POST['book_name']
-        book.price = request.POST['price']
-        book.author = request.POST['author']
-        book.save()
-        form = self.form_class(None)
-        return render(request, self.template_name, {'form': form, 'Books': Book.objects.all()})
-
-
-def update(request):
-    b = Book.objects.get(book_id=request.POST['book_id'])
-    b.isbn = request.POST['isbn']
-    b.book_name = request.POST['book_name']
-    b.price = request.POST['price']
-    b.author = request.POST['author']
-    b.save()
-    return render(request, 'book_form.html', {'Books': Book.objects.all()})
-
-
-def delete(request):
-    id = request.GET.get('id')
-    b = Book.objects.get(book_id=id)
-    b.delete()
-    return render(request, 'book_form.html', {'Books': Book.objects.all()})
-
-
-class BookDelete(View):
-    form_class = BookForm
-    template_name = 'book_form.html'
-
-    def get(self, request):
-        id = request.GET.get('id')
-        b = Book.objects.get(book_id=id)
-        print(b)
-        b.delete()
-        form = self.form_class(None)
-        return render(request, self.template_name, {'form': form, 'Books': Book.objects.all()})
-
-    def post(self, request):
-        b = Book.objects.get(book_id=request.POST['delete'])
-        b.delete()
-        form = self.form_class(None)
-        return render(request, self.template_name, {'form': form, 'Books': Book.objects.all()})
-
 

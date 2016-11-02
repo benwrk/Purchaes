@@ -14,3 +14,8 @@ Purchaes/user/migrations/__pycache__/
 Purchaes/user/static/images/
 Purchaes/Purchaes/__pycache__/wsgi.cpython-35.pyc
 Purchaes/book/
+backend/Purchaes/__pycache__/wsgi.cpython-35.pyc
+backend/home/static/
+backend/items/static/items/
+backend/user/__pycache__/
+*.pyc

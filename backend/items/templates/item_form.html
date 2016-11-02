@@ -5,7 +5,7 @@
     <script src="{% static "items/bootstrapTagsInput/bootstrap-tagsinput.js" %}"></script>
     <div class="row">
         <div class="col-md-6 col-xs-12 col-sm-8 col-lg-6">
-            <form class="form-group" action="{% url 'item:item-add' %}" method="post">
+            <form class="form-group" action="{% url 'item:item-add' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 name:<br>
                 <input class="form-control" type="text" name="name"><br>
