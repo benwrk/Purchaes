@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}listing{% endblock %}
+{% block body %}
+    <script src="{% static "items/bootstrapTagsInput/bootstrap-tagsinput.js" %}"></script>
+    <div class="row">
+        <div class="col-md-6 col-xs-12 col-sm-8 col-lg-6">
+            <form class="form-group" action="{% url 'item:item-add' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                name:<br>
+                <input class="form-control" type="text" name="name"><br>
+                description:<br>
+                <input class="form-control" type="text" role="combobox" name="description"><br>
+                image url:<br>
+                <input class="form-control" type="text" role="combobox" name="image-url"><br>
+                time:<br>
+                 <input type="time" name="time"><br>
+                price:<br>
+                <input class="form-control" type="text" role="combobox" name="url"><br>
+                Images:<br>
+                <input class="form" type="file" name="picture" accept="image/*"><br>
+                Tag:
+                <input class="form-control" type="text" role="combobox" name="tag"><br>
+                Category:<br>
+                <select class="form-control" name="category">
+                    <option value="">Select</option>
+                    <option value="Food">Food</option>
+                    <option value="Home">Home</option>
+                    <option value="Electronic">Electronic</option>
+                    <option value="Hardware">Hardware</option>
+                </select>
+
+                    <label for="price-min">Min Price:</label>
+                    <input type="range" name="price-min" id="price-min" value="200" min="0" max="1000">
+                    <label for="price-max">Max Price:</label>
+                    <input type="range" name="price-max" id="price-max" value="800" min="0" max="1000">
+                <input class="btn btn-primary" type="submit" value="submit">
+            </form>
+        </div>
+{% endblock %}

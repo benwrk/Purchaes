@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block title %}Book{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+                <h1>Book register</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-xs-12 col-sm-8 col-lg-6">
+                <form class="form-group" action="{% url 'api:book' %}" method="post">
+                    {% csrf_token %}
+                    Book ID:<br>
+                    <input class="form-control" type="text" name="book_id"><br>
+                    ISBN:<br>
+                    <input class="form-control" type="text" name="isbn"><br>
+                    Book name:<br>
+                    <input class="form-control" type="text" name="book_name"><br>
+                    Price:<br>
+                    <input class="form-control" type="text" name="price"><br>
+                    Author:<br>
+                    <input class="form-control" type="text" name="author"><br>
+                    <input class="btn btn-primary" type="submit" value="insert">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div>
+        <table class="table">
+            <tr>
+                <th>Book id</th>
+                <th>ISBN</th>
+                <th>BOok name</th>
+                <th>price</th>
+                <th>author</th>
+                <th>update</th>
+                <th>delete</th>
+
+            </tr>
+            {% for x in  Books %}
+                <form class="form-group" action="{% url 'api:book-update' %}" method="post">
+                    {% csrf_token %}
+                    <tr>
+                        <td>
+                            <input class="form-control" type="text" name="book_id" value="{{ x.book_id }}">
+
+
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" name="isbn" value="{{ x.isbn }}"><br>
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" name="book_name" value="{{ x.book_name }}"><br>
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" name="price" value="{{ x.price }}"><br>
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" name="author" value="{{ x.author }}"><br>
+                        </td>
+                        <td>
+                            <input class="btn btn-primary" type="submit" value="update">
+                        </td>
+                        <td>
+                            <a href="delete/?id={{ x.book_id }}">Delete</a>
+                        </td>
+                    </tr>
+                </form>
+            {% endfor %}
+
+    </div>
+{% endblock %}
+</table>
