@@ -74,12 +74,13 @@ class item_create(View):
         return redirect('item-item-create')
 
 def item_detail(request):
-    id = request.GET.get('id', '')
-    listing = Listing.objects.filter(id=id)
-    if listing.count()>0:
-        return render(request, 'item_detail.html', {'item': listing})
-    else:
-        return render(request,'item_detail.html',{})
+    i= request.GET.get('id', '')
+    listing = Listing.objects.get(id=i)
+    print(id)
+    print(listing)
+
+    return render(request, 'item_detail.html', {'listing': listing})
+
 class item_update(View):
     def get(self,request):
         if request.user.is_authenticated():
