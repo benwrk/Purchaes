@@ -2,5 +2,26 @@
 {% block title %}
 {% endblock %}
 {% block body %}
-{#    {{ item }}#}
+    <div class="row">
+        <div class="col-md-6 col-xs-12 col-sm-8 col-lg-6">
+            <form class="form-group" action="{% url 'item:offer-create' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                Name:<br>
+                <input class="form-control" type="text" name="title"><br>
+                Description:<br>
+                <input class="form-control" type="text" name="description"><br>
+                Valid for(hour):<br>
+                <input class="form-control" type="number" name="valid_for"><br>
+                Listing id:<br>
+                <input class="form-control" type="text" name="listing-id"><br>
+                Price:<br>
+                <input class="form-control" type="number" name="price"><br>
+                images:<br>
+                <input class="form" type="file" name="image" accept="image/*" multiple><br>
+                Tag:
+                <input class="form-control" type="text" name="tag"><br>
+                <input class="btn btn-primary" type="submit" value="submit">
+            </form>
+        </div>
+    </div>
 {% endblock %}
