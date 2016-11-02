@@ -54,11 +54,16 @@ class Register(View):
 
             # returns User object if credentials are correct
             user = authenticate(username=username, password=password)
-
+            from .models import User
+            u = User()
+            u.username = username
+            u.bio = request.POST['bio']
+            u.save()
             if user is not None:
-
+                print('not none')
                 if user.is_active:
-                    user_login(request, user)
+                    print('active')
+                    login(request, user)
                     return redirect("home:home")
         return render(request, self.template_name, {'form': form})
 
