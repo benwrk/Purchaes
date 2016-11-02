@@ -3,5 +3,18 @@
     profile - {{ user.username }}
 {% endblock %}
 {% block body %}
-    {{ user.username }}
+        <style type="text/css">
+            img {
+                width: 250px;
+            }
+            .profile {
+                margin-top: 20px;
+            }
+        </style>
+        <div class="text-center profile">
+            <img src="https://s21.postimg.org/rqlzf9hs7/account_img.png">
+            <h1>{{ user.username }}</h1>
+            <h3>{{ user.email }}</h3>
+            <h3>{{ user.bio }}</h3>
+        </div>
 {% endblock %}
