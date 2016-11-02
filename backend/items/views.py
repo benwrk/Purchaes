@@ -121,13 +121,15 @@ def item_category(request):
 def item_search(request):
     keyword = request.GET.get('keyword','')
     category = request.GET.get('category','')
-    if category == 'All':
+    if keyword =='':
+        listings = Listing.objects.filter( item__in=Item.objects.filter(category__name=category))
+    elif category == 'All':
         listings = Listing.objects.filter(title=keyword)
     else:
         listings = Listing.objects.filter(title=keyword,item__in=Item.objects.filter(category__name=category))
     items = Item.objects.filter(category__name=keyword)
-    print (Item.objects.filter(category__name=category))
-    print (category)
+    # print (Item.objects.filter(category__name=category))
+    # print (category)
     # print(type(listings))
     # listings = set(listings)
     # print(listings)
