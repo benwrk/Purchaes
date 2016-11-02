@@ -18,7 +18,7 @@
 ## Get start
  install requirment:
 ```
- pip install -r requirments.txt
+ pip install -r requirements.txt.txt
 ```
  change DATABASE in the setting:
   [backend/Purchaes/setting](https://github.com/benwrk/Purchaes/blob/development/backend/Purchaes/settings.py)
