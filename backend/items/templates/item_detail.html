@@ -109,8 +109,8 @@
             </div>
             <div class="col-md-6 buttonForOrder">
             	<CENTER>
-	                <button type="button" class="btn btn-info" hres="{%url 'item:item-offer'}">Bid Now</button>
-	                <button type="button" class="btn btn-info">Add to Order</button>
+	                <button type="button" class="btn btn-info" onclick="location.href='{%url 'item:offer-create'%}?id={{ listing.id }}'">Offer Now</button>
+	                <button type="button" class="btn btn-info" onclick="location.href='{%url 'item:offer-search'%}?id={{ listing.id }}'">View Offer</button>
             	</CENTER>
             </div>
         </div>
