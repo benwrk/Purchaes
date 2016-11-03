@@ -12,13 +12,17 @@
                 <input class="form-control" type="text" name="description"><br>
                 Valid for(hour):<br>
                 <input type="range" name="valid_for" id="price-max" value="5000" min="0" max="10000">
-                Listing id:<br>
-                <input class="form-control" type="text" name="listing-id"><br>
-                <select class="form-control" name="listing-id">
+                Listing:
+                {% if id %}
+                    {{ id }}<br>
+                {% else %}
+                    <select class="form-control" name="listing-id">
                         {% for l in listings %}
                             <option value="{{ l.id }}">{{  l.title}}</option>
-                    {% endfor %}
-                    </select>
+                        {% endfor %}
+                    </select><br>
+                {% endif %}
+
                 Price:<br>
                 <input class="form-control" type="number" name="price"><br>
                 images:<br>

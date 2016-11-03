@@ -143,7 +143,7 @@ def item_search(request):
 
 class offer_create(View):
     def get(self,request):
-        id = 0
+        id = None
         if request.GET.get('id','') is not None:
             id = request.GET.get('id','')
         return render(request,'offer_create.html',{"id":id,'listings':Listing.objects.all()})
