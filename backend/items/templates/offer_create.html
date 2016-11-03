@@ -11,9 +11,14 @@
                 Description:<br>
                 <input class="form-control" type="text" name="description"><br>
                 Valid for(hour):<br>
-                <input class="form-control" type="number" name="valid_for"><br>
+                <input type="range" name="valid_for" id="price-max" value="5000" min="0" max="10000">4
                 Listing id:<br>
                 <input class="form-control" type="text" name="listing-id"><br>
+                <select class="form-control" name="listing-id">
+                        {% for l in listings %}
+                            <option value="{{ l.id }}">{{  l.title}}</option>
+                    {% endfor %}
+                    </select>
                 Price:<br>
                 <input class="form-control" type="number" name="price"><br>
                 images:<br>
