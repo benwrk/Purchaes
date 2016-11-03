@@ -88,7 +88,8 @@
                     </select>
                 </div>
 
-                <button type="submit" class="btn btn-default">Search</button>
+                 <button type="submit" class="btn btn-default">Search</button>
+
             </form>
 
             <!-- The drop down menu -->
@@ -138,24 +139,24 @@
     <nav class="bs-docs-sidebar hidden-print hidden-sm hidden-xs ">
         <ul class="nav nav-pills nav-stacked  inbox-divider">
             <li class="">
-                <a href="{% url 'item:item-search' %}?keywords=Food">Food</a>
+                <a href="{% url 'item:item-search' %}?category=Food">Food</a>
             </li>
             <li class="nav-pills nav-stacked labels-info ">
                 <a data-toggle="collapse"  href="#menu1"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>&nbsp;Home</a>
                 <ul id="menu1" class="nav  collapse">
                     <li class="">
-                        <a href="">Kitchen</a>
+                        <a href="{% url 'item:item-search' %}?category=Kitchen">Kitchen</a>
                     </li>
                     <li class="">
-                        <a href="">Living Room</a>
+                        <a hhref="{% url 'item:item-search' %}?category=Living Room">Living Room</a>
                     </li>
                 </ul>
             </li>
             <li class="">
-                <a href="#glyphicons-glyphs">Electronic</a>
+                <a href="{% url 'item:item-search' %}?category=Electronic">Electronic</a>
             </li>
             <li class="">
-                <a href="#glyphicons-glyphs">Hardware</a>
+                <a href="{% url 'item:item-search' %}?category=Hardware">Hardware</a>
             </li>
         </ul>
     </nav>

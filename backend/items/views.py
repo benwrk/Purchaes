@@ -15,7 +15,7 @@ def tag_check(input):
     except Tag.DoesNotExist:
         print('0')
         tag = Tag()
-        tag.title = input
+        tag.name = input
         tag.save()
     return tag
 
@@ -128,6 +128,7 @@ def item_search(request):
     else:
         listings = Listing.objects.filter(title=keyword,item__in=Item.objects.filter(category__name=category))
     items = Item.objects.filter(category__name=keyword)
+
     # print (Item.objects.filter(category__name=category))
     # print (category)
     # print(type(listings))
@@ -148,6 +149,7 @@ class offer_create(View):
         return render(request,'offer_create.html',{"id":id})
     def post(self,request):
         if request.user.is_authenticated:
+            # if not Offer.objects.filter(title=request.POST['title']).count()>0:
             offer = Offer()
             offer.valid_for = request.POST['valid_for']
             offer.title = request.POST['title']
@@ -156,22 +158,31 @@ class offer_create(View):
             offer.owner = User.objects.get(username=request.user.username)
             offer.price = request.POST['price']
             offer.save()
-            if len(request.FILES.getList('image')) > 0:
-                for i in request.FILES.getList('image'):
+            if len(request.FILES.getlist('image')) > 0:
+                for i in request.FILES.getlist('image'):
                     image = Image()
                     image.image = i
                     image.save()
                     offer.image.add(image)
             else:
+                print('in',request.FILES.get('image'))
                 image = Image()
                 image.image = request.FILES.get('image')
                 image.save()
                 offer.image.add(image)
-            offer.tags.add(tag_check(request.POST['tag-item']))
-            return render(request,'offer_detail.html',{'offer':offer})
+            offer.tags.add(tag_check(request.POST['tag']))
+
+            return custom_redirect('item:offer-detail' , 'id='+str(offer.id))
+            # else:
+            #     return custom_redirect('item:offer-detail', 'id=' + str(Offer.objects.get(title=request.POST['title']).id))
 def offer_detail(request):
     offer = Offer.objects.get(id=request.GET.get('id',''))
     return render(request,'offer_detail.html',{"offer":offer})
+
+def offer_search(request):
+    id = request.GET.get('id','')
+    offers=Offer.objects.filter(listing_id=id)
+    return render(request,'offer_search.html',{'offers':offers})
 
 def handle_uploaded_file(f):
     with open('some/file/name.txt', 'wb+') as destination:

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block titel%}Offer search{% endblock %}
+{% block body %}
+    <div class="row">
+        <section class="content">
+            <h1>Offer</h1>
+            <div class="col-md-10 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="table-container">
+                            <table class="table table-filter">
+                                <tbody>
+                                {% for offer in offers %}
+                                <tr data-status="pagado">
+                                    <td>
+                                        <div class="ckbox">
+                                            <input type="checkbox" id="checkbox1">
+                                            <label for="checkbox1"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="javascript:;" class="star">
+                                            <i class="glyphicon glyphicon-star"></i>
+                                        </a>
+                                    </td>
+                                    <td onclick="location.href='{% url 'item:offer-detail' %}?id={{ offer.id }}'">
+                                        <div class="media">
+                                            <a href="" class="pull-left">
+                                                <img src="{% with offer.image.all|first as image %}{{image.image.url }}{% endwith %}" class="media-photo" height="42" width="42">
+                                            </a>
+                                            <div class="media-body">
+                                                <span class="media-meta pull-right">{{ offer.created_date }}</span>
+                                                <h4 class="title" href="{% url 'item:offer-detail' %}?id={{ offer.id }}" >
+                                                    {{ offer.title }}
+                                                </h4>
+                                                <p class="summary" style="overflow: hidden;text-overflow: ellipsis;">Ut enim ad minim veniam, quis nostrud exercitation...</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+{% endblock %}
