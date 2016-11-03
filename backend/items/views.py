@@ -146,7 +146,7 @@ class offer_create(View):
         id = 0
         if request.GET.get('id','') is not None:
             id = request.GET.get('id','')
-        return render(request,'offer_create.html',{"id":id})
+        return render(request,'offer_create.html',{"id":id,'listings':Listing.objects.all()})
     def post(self,request):
         if request.user.is_authenticated:
             # if not Offer.objects.filter(title=request.POST['title']).count()>0:
