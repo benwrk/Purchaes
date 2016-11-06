@@ -25,7 +25,10 @@ SECRET_KEY = '*en=(0^#hd9=-@lzu8^6d!%zmvmlwczn-o&fmmzs_4+5730&c_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '.purchaes.herokuapp.com',
+    '.purcha.es'
+]
 
 
 # Application definition
