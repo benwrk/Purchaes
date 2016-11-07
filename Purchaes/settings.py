@@ -23,13 +23,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '*en=(0^#hd9=-@lzu8^6d!%zmvmlwczn-o&fmmzs_4+5730&c_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = [
-    '.purchaes.herokuapp.com',
-    '.purcha.es'
+    u'.purchaes.herokuapp.com',
+    u'.purcha.es',
 ]
 
+if DEBUG:
+    ALLOWED_HOSTS.append(u'localhost')
 
 # Application definition
 
@@ -124,10 +126,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'app/static')
-]
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
 
 LOGIN_URL = '/login/'
