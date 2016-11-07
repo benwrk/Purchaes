@@ -259,4 +259,4 @@ __pycache__
 *.pyc
 env
 .env
-static_files/
+staticfiles/

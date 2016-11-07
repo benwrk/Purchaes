@@ -2,3 +2,5 @@ django >=1.9, <2
 django-crispy-forms
 gunicorn
 psycopg2
+whitenoise
+brotlipy
