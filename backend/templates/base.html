@@ -3,6 +3,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="description" content="">
+    <meta name="author" content="">
     <title>{% block title %}{% endblock %}</title>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
             integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
@@ -137,27 +141,27 @@
 <div class="col-md-10" style=";margin: auto;">
     <div class="col-md-2" role="complementary">
         {#    affix#}
-        <nav class="bs-docs-sidebar hidden-print hidden-sm hidden-xs nav-base">
-            <ul class="nav nav-pills nav-stacked  inbox-divider">
-                <li class="">
-                    <a href="{% url 'item:item-search' %}?category=Food">Food</a>
+        <nav class="bs-docs-sidebar hidden-print hidden-sm hidden-xs ">
+            <ul class="nav nav-pills nav-stacked  inbox-divider list-group">
+                <li class="list-group-item" onclick="location.href='{% url 'item:item-search' %}?category=Food'">
+                    Food
                 </li>
-                <li class="nav-pills nav-stacked labels-info ">
-                    <a data-toggle="collapse"  href="#menu1"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>&nbsp;Home</a>
+                <li class="nav-pills nav-stacked labels-info list-group-item"  data-toggle="collapse"  href="#menu1">
+    <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>&nbsp;Home
                     <ul id="menu1" class="nav  collapse">
-                        <li class="">
-                            <a href="{% url 'item:item-search' %}?category=Kitchen">Kitchen</a>
+                        <li class="list-group-item" onclick="location.href='{% url 'item:item-search' %}?category=Kitchen'">
+                            Kitchen<
                         </li>
-                        <li class="">
-                            <a hhref="{% url 'item:item-search' %}?category=Living Room">Living Room</a>
+                        <li class="list-group-item onclick="href='{% url 'item:item-search' %}?category=Living+Room'">
+                            Living Room
                         </li>
                     </ul>
                 </li>
-                <li class="">
-                    <a href="{% url 'item:item-search' %}?category=Electronic">Electronic</a>
+                <li class="list-group-item" onclick="location.href='{% url 'item:item-search' %}?category=Electronic'">
+                    Electronic
                 </li>
-                <li class="">
-                    <a href="{% url 'item:item-search' %}?category=Hardware">Hardware</a>
+                <li class="list-group-item" onclick="location.href='{% url 'item:item-search' %}?category=Hardware'">
+                    Hardware
                 </li>
             </ul>
         </nav>
