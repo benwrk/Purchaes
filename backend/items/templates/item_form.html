@@ -7,7 +7,7 @@ z{% extends 'base.html' %}
     <link rel="stylesheet" type="text/css" href="{% static 'owl.carousel/assets/owl.carousel.css' %}">
     <div class="row">
     <div class="col-md-6 col-xs-12 col-sm-8 col-lg-6">
-        <form class="form-group" action="{% url 'item:item-add' %}" method="post" enctype="multipart/form-data">
+        <form class="form-group" id="listingForm" action="{% url 'item:item-add' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             Listing title:<br>
             <input class="form-control" type="text" name="title"><br>
@@ -21,18 +21,18 @@ z{% extends 'base.html' %}
             <div class="owl-carousel">
                 {#            <ul class="row" role="list" style="max-height: 150px;height: 150px; width: 1000px; overflow-y: hidden;    overflow-x:scroll;">#}
                 {% for item in items %}
-                    <div class="item">
-                        <div class="thumbnail">
+                    <div id="item-{{ item.id }}" value="{{ item.id }}" class="thumbnail item" onclick="changecolor(this)">
                             <img src="{{ item.image.all.0.image.url }}" style="border-radius: 5px; ">
                             <div class="caption">
                                 <h4>{{ item.name }}</h4>
                             </div>
-                        </div>
 
                     </div>
                 {% endfor %}
                 {#            </ul>#}
             </div>
+            <button type="button" class="btn btn-info" onclick="clearItem" data-toggle="collapse" data-target="#addItem">add item</button><br>
+        <fieldset data-role="collapsible"  class="collapse" id="addItem">
             Item name:<br>
             <input class="form-control" type="text" name="name"><br>
             Item description:<br>
@@ -44,16 +44,18 @@ z{% extends 'base.html' %}
             Item tag:<br>
             <input class="form-control" type="text" role="combobox" name="tag-item"><br>
             Category:<br>
-            <select class="form-control" name="category">
+
+            <select  class="form-control" name="category">
                 <option value="">Select</option>
                 <option value="Food">Food</option>
                 <option value="Home">Home</option>
                 <option value="Electronic">Electronic</option>
                 <option value="Hardware">Hardware</option>
             </select>
+            </fieldset>
             <label for="price-max">Max Price:</label>
             <input type="range" name="max_accepted_price" id="price-max" value="800" min="0" max="1000">
-            <input class="btn btn-primary" type="submit" value="submit">
+            <input class="btn btn-primary" type="button" onclick="sub()" value="submit">
         </form>
     </div>
     <script>
@@ -85,5 +87,25 @@ z{% extends 'base.html' %}
             }
             e.preventDefault();
         });
+        var itemId;
+        function changecolor(input) {
+            var item = document.getElementsByClassName('thumbnail');
+            console.log(input.id.toString().replace("item-",""));
+            console.log(input.innerHTML);
+            console.log(input);
+            itemId=input.id.toString().replace("item-","");
+            for (var i = 0; i < item.length; i++) {
+                item[i].style.border= "1px solid #ddd";
+            }
+            input.style.border="2px solid  #0F0";
+        }
+        function sub() {
+            var input = document.createElement("input");
+            input.setAttribute("item-id",itemId);
+            document.getElementById("listingForm").appendChild(input);
+        }
+        function clearItem() {
+            itemId=undefined;
+        }
     </script>
 {% endblock %}
