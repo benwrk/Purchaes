@@ -48,7 +48,7 @@ class item_create(View):
     fields = ['title', 'description']
 
     def get(self, request):
-        return render(request, 'item_form.html')
+        return render(request, 'item_form.html',{'items':Item.objects.all()})
 
     def post(self, request):
         if request.user.is_authenticated:
