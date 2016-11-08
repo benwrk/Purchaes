@@ -3,9 +3,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
- <meta name="description" content="">
+    <meta name="description" content="">
     <meta name="author" content="">
     <title>{% block title %}{% endblock %}</title>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -68,7 +68,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a href="{% url 'item:offer-create' %}">
+                    <a href="{% url 'home:market' %}">
                         <span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span>&nbsp;
                         market
                     </a>
@@ -147,15 +147,17 @@
                     Food
                 </li>
                 <li class="nav-pills nav-stacked labels-info list-group-item"  data-toggle="collapse"  href="#menu1">
-    <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>&nbsp;Home
-                    <ul id="menu1" class="nav  collapse">
-                        <li class="list-group-item" onclick="location.href='{% url 'item:item-search' %}?category=Kitchen'">
-                            Kitchen<
-                        </li>
-                        <li class="list-group-item onclick="href='{% url 'item:item-search' %}?category=Living+Room'">
-                            Living Room
-                        </li>
-                    </ul>
+{#                    <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>&nbsp;#}
+                    Home
+                    {#                    <ul id="menu1" class="nav  collapse">#}
+
+                    {#                    </ul>#}
+                </li>
+                <li class="list-group-item" onclick="location.href='{% url 'item:item-search' %}?category=Kitchen'">
+                    Kitchen<
+                </li>
+                <li class="list-group-item onclick="href='{% url 'item:item-search' %}?category=Living+Room'">
+                Living Room
                 </li>
                 <li class="list-group-item" onclick="location.href='{% url 'item:item-search' %}?category=Electronic'">
                     Electronic

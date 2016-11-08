@@ -100,4 +100,6 @@ body {
     background-color:#F7F7F7;
     border-radius: 5px;
 }
-
+.list-group-item:hover{
+    background-color: #F7F7F7;
+}
