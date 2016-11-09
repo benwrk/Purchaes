@@ -139,12 +139,14 @@ def item_search(request):
     items = Item.objects.filter(category__name__icontains=keyword)
     for tag in Tag.objects.filter(name=keyword).all():
         print(tag.name)
-    tags = Listing.objects.filter(tags__in=Tag.objects.filter(name__icontains=keyword))
     lists = []
+    if len(keyword)>0:
+        tags = Listing.objects.filter(tags__in=Tag.objects.filter(name__icontains=keyword))
+        for tag in tags.all():
+            lists.append(tag)
     for listing in listings.all():
         lists.append(listing)
-    for tag in tags.all():
-        lists.append(tag)
+
     # list =
     print(list(set(lists)))
     # print (Item.objects.filter(category__name=category))
