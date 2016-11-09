@@ -10,7 +10,7 @@ env:
   - PSQL_PASSWORD=''
 
 before_script:
-  - psql -c 'create database wsplab'; -U postgres
+  - psql -c 'create database wsplab;' -U postgres
 
 # command to install dependencies
 install: "pip install -r backend/requirements.txt"
