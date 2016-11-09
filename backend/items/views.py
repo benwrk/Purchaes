@@ -85,7 +85,7 @@ class item_create(View):
             listing.save()
             listing.tags.add = tag_check(request.POST['tag-listing'])
             return custom_redirect('item:item-detail' , 'id='+str(listing.id))
-        return redirect('item-item-create')
+        return redirect('item:item-create')
 
 def item_detail(request):
     i= request.GET.get('id', '')
@@ -139,7 +139,7 @@ def item_search(request):
     # print(listings)
     # print(type(listings))
     # print (items)
-    return render(request,'item_search.html',{'listings':listings,'items':items})
+    return render(request,'item_search.html',{'listings':listings.all(),'items':items})
 
 class offer_create(View):
     def get(self,request):
