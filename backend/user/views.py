@@ -69,4 +69,4 @@ class Register(View):
 
 def user_profile(request):
     from .models import User
-    return render(request, 'profile_view.html', {'user': User.objects.get(username=request.user.username)})
+    return render(request, 'profile_view.html', {'webuser': User.objects.get(username=request.user.username)})
