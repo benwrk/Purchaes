@@ -91,10 +91,11 @@ class RedirectLoggingIn(View):
             # cleaned (normalized) data
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
+
+            # returns User object if credentials are correct
             user = authenticate(username=username, password=password)
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return redirect('home:home')
-            return redirect('home:home')
-        return redirect('home:home')
+                    return redirect("home:home")
+        return redirect("home:home")
