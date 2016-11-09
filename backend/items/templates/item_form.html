@@ -2,7 +2,6 @@
 {% load static %}
 {% block title %}Listing{% endblock %}
 {% block body %}
-    {% if user.is_authenticated %}
     <script src="{% static "bootstrapTagsInput/bootstrap-tagsinput.js" %}"></script>
     <script src="{% static "owl.carousel/owl.carousel.js" %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'owl.carousel/assets/owl.carousel.css' %}">
@@ -152,9 +151,4 @@
           document.getElementById('textInputValid_for').value=val;
         }
     </script>
-    {% else %}
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="{% url 'user:redirect-login' %}">Login</a></li>
-        </ul>
-    {% endif %}
 {% endblock %}
