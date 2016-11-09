@@ -3,24 +3,24 @@
 {% block title %}Offer {% endblock %}
 {% block body %}
     <div class="row">
-    <script src="{% static "owl.carousel/owl.carousel.js" %}"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'owl.carousel/assets/owl.carousel.css' %}">
+        <script src="{% static "owl.carousel/owl.carousel.js" %}"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'owl.carousel/assets/owl.carousel.css' %}">
         <h2>{{ offer.title }}</h2>
-                  <div class="owl-carousel">
-                {#            <ul class="row" role="list" style="max-height: 150px;height: 150px; width: 1000px; overflow-y: hidden;    overflow-x:scroll;">#}
-                {% for image in offer.image.all %}
-                     <div>
-                        <div id="item-{{ item.name }}" value="{{ item.name }}"  class="thumbnail item excitedItem" >
-                            <div class=""  >
-                                    <img src="{{ image.image.url }}">
+        <div class="owl-carousel">
+            {#            <ul class="row" role="list" style="max-height: 150px;height: 150px; width: 1000px; overflow-y: hidden;    overflow-x:scroll;">#}
+            {% for image in offer.image.all %}
+                <div>
+                    <div id="item-{{ item.name }}" value="{{ item.name }}"  class="thumbnail item excitedItem" >
+                        <div class=""  >
+                            <img src="{{ image.image.url }}">
 
-                            </div>
                         </div>
-                     </div>
-                {% endfor %}
-                {#            </ul>#}
-            </div>
-{#        <img src="{% with offer.image.all|first as image %}{{image.image.url }}{% endwith %}" class="media-photo" height="42" width="42"><br>#}
+                    </div>
+                </div>
+            {% endfor %}
+            {#            </ul>#}
+        </div>
+        {#        <img src="{% with offer.image.all|first as image %}{{image.image.url }}{% endwith %}" class="media-photo" height="42" width="42"><br>#}
         Description:<br>
         <textarea rows="4" cols="50" readonly>{{ offer.description }}</textarea><br>
         Valid for:<meter value="{{ offer.valid_for }}" min="0" max="10000">{{ offer.valid_for }} left!!!</meter>({{ offer.valid_for }} hours)<br>
@@ -28,10 +28,10 @@
         Tag: {% for t in offer.tags.all %}<span class="tag label label-info">{{ t.tag }}</span>{% endfor %}
     </div>
     <script>
-     var owl = $('.owl-carousel');
+        var owl = $('.owl-carousel');
         owl.owlCarousel({
             loop:false,
-            nav:false   ,
+            nav:false,
             margin:20,
             responsive:{
                 0:{
