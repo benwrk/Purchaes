@@ -85,9 +85,9 @@ WSGI_APPLICATION = 'Purchaes.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'wsplab',
-        'USER': 'wsp',
-        'PASSWORD':'123456789',
+        'NAME': os.environ.get('PSQL_NAME', 'wsplab'),
+        'USER': os.environ.get('PSQL_USER', 'wsp'),
+        'PASSWORD': os.environ.get('PSQL_PASSWORD', '123456789'),
         'HOST':'localhost',
         'PORT':'',
     }
