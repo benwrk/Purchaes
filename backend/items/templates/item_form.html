@@ -131,6 +131,7 @@
             var input = document.createElement("input");
             input.setAttribute("item-id",itemId);
             document.getElementById("listingForm").appendChild(input);
+            document.getElementById("listingForm").submit();
         }
         function clearItem() {
             itemId=undefined;
