@@ -61,70 +61,27 @@
             <h1>For you <span class="label label-default">only</span></h1>
         </div>
         <h3>Popular Items</h3>
-        <div class="row" style="margin: 10px 10px 10px 10px;">
-            <div class="col-sm-6 col-md-4">
 
-                <div class="thumbnail" onclick="location.href='{% url 'item:item-detail'%}?id=1'">
-                    <img src="http://www.bestbicyclebrands.net/wp-content/gallery/mountain-bicycle/mountain_bicycle_road_racing_bicycle.jpg" alt="..." style="border-radius: 5px; ">
-                    <div class="caption">
-                        <h3>Bicycle</h3>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                                 aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                                10h left!!!
+        <div class="row" style="margin: 10px 10px 10px 10px;">
+            {% for listing in listings %}
+                <div class="col-sm-6 col-md-4">
+
+                    <div class="thumbnail" onclick="location.href='{% url 'item:item-detail'%}?id={{ listing.id }}'">
+                        <img src="{{  listing.item.image.all.0.image.url }}" alt="..." style="border-radius: 5px; ">
+                        <div class="caption">
+                            <h3>{{ listing.title }}</h3>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="{{ listing.valid_for }}"
+                                     aria-valuemin="0" aria-valuemax="1000" style="width:70%">
+                                    {{ listing.valid_for }}h left!!!
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail" onclick="location.href='{% url 'item:item-detail'%}?id=1'">
-                    <img src="http://www.charlybaran.fr/images/images/Nike_Free_5.0_Hommes_Electric_Yellow_Blue_2.jpg" style="border-radius: 5px; ">
-                    <div class="caption">
-                        <h3>Shoes</h3>
-                    </div>
                 </div>
+            {% endfor %}
 
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail" onclick="location.href='{% url 'item:item-detail'%}?id=1'">
-                    <img src="http://i0.wp.com/www.goodhomeadvisor.com/blogs/wp-content/uploads/2014/01/Modern-furnitures.jpg" alt="..." style="border-radius: 5px; ">
-                    <div class="caption">
-                        <h3>Furniture</h3>
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
-        <div class="row" style="margin: 10px 10px 10px 10px;">
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail" onclick="location.href='{% url 'item:item-detail'%}?id=1'">
-                    <img src="https://s-media-cache-ak0.pinimg.com/564x/34/5d/c6/345dc6d01d55b4b149b20b5dbfc72b12.jpg" alt="..." style="border-radius: 5px; ">
-                    <div class="caption">
-                        <h3>Motorcycle</h3>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail" onclick="location.href='{% url 'item:item-detail'%}?id=1'">
-                    <img src="https://s3-eu-west-1.amazonaws.com/iouproyect/photos/items/a1I20000000cYb9EAEphoto.jpg" alt="..." style="border-radius: 5px; ">
-                    <div class="caption">
-                        <h3>Jean</h3>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail" onclick="location.href='{% url 'item:item-detail'%}?id=1'">
-                    <img src="http://prodimage.images-bn.com/pimages/9780545162074_p0_v2_s1200x630.jpg" alt="..." style="border-radius: 5px; ">
-                    <div class="caption">
-                        <h3>Books</h3>
-                    </div>
-                </div>
-            </div>
         </div>
 
     </div>
