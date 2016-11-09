@@ -3,6 +3,7 @@ from django.shortcuts import render,redirect
 from .models import *
 from django.views.generic import View
 from user.models import User
+from itertools import chain
 
 from django.views.generic import DetailView
 # Create your views here.
@@ -128,7 +129,9 @@ def item_search(request):
     else:
         listings = Listing.objects.filter(title=keyword,item__in=Item.objects.filter(category__name=category))
     items = Item.objects.filter(category__name=keyword)
-
+    tag = Listing.objects.filter(tag)
+    # list =
+    print(type(list))
     # print (Item.objects.filter(category__name=category))
     # print (category)
     # print(type(listings))
