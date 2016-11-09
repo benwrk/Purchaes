@@ -63,8 +63,9 @@ class item_create(View):
                 item.brand = brand_check(request.POST['brand'])
                 item.category = category_check(request.POST['category'])
                 item.save()
-                print("TAG",tag_check(request.POST['tag-item']))
-                # item.tags.add()
+                print("TAG",)
+                for item_tag in str(request.POST['tag-item']).split(","):
+                    item.tags.add(tag_check(item_tag))
 
                 if len(request.FILES.getlist('image'))>0:
                     for i in  request.FILES.getlist('image'):
@@ -87,7 +88,9 @@ class item_create(View):
             listing.owner = User.objects.get(username=request.user.username)
             listing.max_accepted_price = request.POST['max_accepted_price']
             listing.save()
-            listing.tags.add = tag_check(request.POST['tag-listing'])
+            # listing.tags.add = tag_check(request.POST['tag-listing'])
+            for listing_tag in str(request.POST['tag-listing']).split(","):
+                listing.tags.add(tag_check(listing_tag))
             return custom_redirect('item:item-detail' , 'id='+str(listing.id))
         return redirect('item:item-add')
 
@@ -132,8 +135,14 @@ def item_search(request):
     else:
         listings = Listing.objects.filter(title=keyword,item__in=Item.objects.filter(category__name=category))
     items = Item.objects.filter(category__name=keyword)
-    tag = Listing.objects.filter(tags__in=Tag.objects.filter(name=keyword))
-    list = chain(listings,tag)
+    for tag in Tag.objects.filter(name=keyword).all():
+        print(tag.name)
+    tags = Listing.objects.filter(tags__in=Tag.objects.filter(name=keyword))
+    list = []
+    for listing in listings.all():
+        list.append(listing)
+    for tag in tags.all():
+        list.append(tag)
     # list =
     print(list)
     # print (Item.objects.filter(category__name=category))
