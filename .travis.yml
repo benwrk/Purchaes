@@ -5,9 +5,7 @@ python:
   - "3.5"
 
 env:
-  - PSQL_NAME='wsplab'
-  - PSQL_USER='postgres'
-  - PSQL_PASSWORD=''
+  - PSQL_NAME='wsplab' PSQL_USER='postgres' PSQL_PASSWORD=''
 
 before_script:
   - psql -c 'create database wsplab;' -U postgres
