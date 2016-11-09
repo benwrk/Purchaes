@@ -128,7 +128,9 @@ def item_category(request):
 def item_search(request):
     keyword = request.GET.get('keyword','')
     category = request.GET.get('category','')
-    if keyword =='':
+    if keyword=='' and category=='All':
+        listings = Listing.objects.all()
+    elif keyword =='':
         listings = Listing.objects.filter( item__in=Item.objects.filter(category__name=category))
     elif category == 'All':
         listings = Listing.objects.filter(title=keyword)
