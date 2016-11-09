@@ -1,0 +1,15 @@
+language: python
+services: postgresql
+python:
+  - "2.7"
+  - "3.5"
+
+env:
+  - PSQL_NAME='wsplab' PSQL_USER='postgres' PSQL_PASSWORD=''
+
+before_script:
+  - psql -c 'create database wsplab;' -U postgres
+
+# command to install dependencies
+install: "pip install -r backend/requirements.txt"
+script: "python backend/manage.py test"
