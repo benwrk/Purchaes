@@ -54,6 +54,10 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'DjangoLibrary.middleware.AutologinAuthenticationMiddleware',
+    'DjangoLibrary.middleware.FactoryBoyMiddleware',
+    'DjangoLibrary.middleware.QuerySetMiddleware',
 ]
 
 ROOT_URLCONF = 'Purchaes.urls'
