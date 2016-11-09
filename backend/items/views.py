@@ -85,7 +85,7 @@ class item_create(View):
             listing.save()
             listing.tags.add = tag_check(request.POST['tag-listing'])
             return custom_redirect('item:item-detail' , 'id='+str(listing.id))
-        return redirect('item:item-create')
+        return redirect('item:item-add')
 
 def item_detail(request):
     i= request.GET.get('id', '')
