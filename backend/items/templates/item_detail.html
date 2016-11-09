@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title%}
-    {% load static %}
+
 {% endblock %}
 
 
@@ -35,7 +35,7 @@
                     Create Date
                 </div>
                 <div class="col-md-8">
-                    {{ listing.item.created_date }}
+                    {{ listing.created_date }}
                 </div>
             </div>
             <div class="row">
@@ -75,7 +75,7 @@
                     Max Accepted Price
                 </div>
                 <div class="col-md-8">
-                    {{ listing.max_accepted_price }}
+                    {{ listing.max_accepted_price }} ฿
                 </div>
             </div>
             <div class="row">
