@@ -48,7 +48,7 @@ class item_create(View):
     fields = ['title', 'description']
 
     def get(self, request):
-        return render(request, 'item_form.html',{'items':Item.objects.all()})
+        return render(request, 'item_form.html',{'items':Item.objects.all(),"brands":Brand.objects.all()})
 
     def post(self, request):
         if request.user.is_authenticated:
@@ -85,7 +85,7 @@ class item_create(View):
             listing.save()
             listing.tags.add = tag_check(request.POST['tag-listing'])
             return custom_redirect('item:item-detail' , 'id='+str(listing.id))
-        return redirect('item-item-create')
+        return redirect('item:item-create')
 
 def item_detail(request):
     i= request.GET.get('id', '')
@@ -139,7 +139,7 @@ def item_search(request):
     # print(listings)
     # print(type(listings))
     # print (items)
-    return render(request,'item_search.html',{'listings':listings,'items':items})
+    return render(request,'item_search.html',{'listings':listings.all(),'items':items})
 
 class offer_create(View):
     def get(self,request):
@@ -188,5 +188,4 @@ def handle_uploaded_file(f):
     with open('some/file/name.txt', 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
-
 

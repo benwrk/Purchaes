@@ -3,7 +3,7 @@
 {% endblock %}
 {% block body %}
     <div class="row" style="margin: 10px 10px 10px 10px;">
-    {% for listing in listings.all  %}
+    {% for listing in listings  %}
         <div class="col-sm-6 col-md-4">
         <div class="thumbnail" onclick="location.href='{% url 'item:item-detail'%}?id={{ listing.id }}'">
           <img src="{{ listing.item.image.all.0.image.url }}" alt="..." style="border-radius: 5px; ">
