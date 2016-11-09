@@ -1,14 +1,60 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Offer {% endblock %}
 {% block body %}
     <div class="row">
+    <script src="{% static "owl.carousel/owl.carousel.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'owl.carousel/assets/owl.carousel.css' %}">
         <h2>{{ offer.title }}</h2>
-        <img src="{% with offer.image.all|first as image %}{{image.image.url }}{% endwith %}" class="media-photo" height="42" width="42"><br>
+                  <div class="owl-carousel">
+                {#            <ul class="row" role="list" style="max-height: 150px;height: 150px; width: 1000px; overflow-y: hidden;    overflow-x:scroll;">#}
+                {% for image in offer.image.all %}
+                     <div>
+                        <div id="item-{{ item.name }}" value="{{ item.name }}"  class="thumbnail item excitedItem" >
+                            <div class=""  >
+                                    <img src="{{ image.image.url }}">
+
+                            </div>
+                        </div>
+                     </div>
+                {% endfor %}
+                {#            </ul>#}
+            </div>
+{#        <img src="{% with offer.image.all|first as image %}{{image.image.url }}{% endwith %}" class="media-photo" height="42" width="42"><br>#}
         Description:<br>
-        <textarea rows="4" cols="50">{{ offer.description }}</textarea><br>
+        <textarea rows="4" cols="50" readonly>{{ offer.description }}</textarea><br>
         Valid for:<meter value="{{ offer.valid_for }}" min="0" max="10000">{{ offer.valid_for }} left!!!</meter>({{ offer.valid_for }} hours)<br>
         Price: {{ offer.price }}<br>
-        Tag: {% for t in offer.tags.all       %}{{ t.tag }},{% endfor %}
+        Tag: {% for t in offer.tags.all %}{{ t.tag }},{% endfor %}
     </div>
-
+    <script>
+     var owl = $('.owl-carousel');
+        owl.owlCarousel({
+            loop:false,
+            nav:false   ,
+            margin:20,
+            responsive:{
+                0:{
+                    items:2
+                },
+                600:{
+                    items:3
+                },
+                960:{
+                    items:3
+                },
+                1200:{
+                    items:4
+                }
+            }
+        });
+        owl.on('mousewheel', '.owl-stage', function (e) {
+            if (e.deltaY>0) {
+                owl.trigger('next.owl');
+            } else {
+                owl.trigger('prev.owl');
+            }
+            e.preventDefault();
+        });
+    </script>
 {% endblock %}

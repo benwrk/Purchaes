@@ -3,30 +3,33 @@
 {% block title %}
 {% endblock %}
 {% block body %}
-        <script src="{% static "bootstrapTagsInput/bootstrap-tagsinput.js" %}"></script>
+    <script src="{% static "bootstrapTagsInput/bootstrap-tagsinput.js" %}"></script>
     <div class="row">
         <div class="col-md-6 col-xs-12 col-sm-8 col-lg-6">
-            <form class="form-group" action="{% url 'item:offer-create' %}" method="post" enctype="multipart/form-data">
+            <form id="offering-form" class="form-group" action="{% url 'item:offer-create' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 Name:<br>
                 <input class="form-control" type="text" name="title"><br>
                 Description:<br>
-                <input class="form-control" type="text" name="description"><br>
+                <textarea class="form-control" type="text" name="description"></textarea><br>
                 Valid for(hour):<br>
-                <input type="range" name="valid_for" id="price-max" value="5000" min="0" max="10000">
-{#                Listing:#}
-{#                {% if id %}#}
-{#                    {{ id }}<br>#}
-{#                {% else %}#}
-{#                    <select class="form-control" name="listing-id">#}
-{#                        {% for l in listings %}#}
-{#                            <option value="{{ l.id }}">{{  l.title}}</option>#}
-{#                        {% endfor %}#}
-{#                    </select><br>#}
-{#                {% endif %}#}
+
+                <input type="range" name="rangeInput" min="0" max="1000" onchange="updateTextInputValid_for(this.value);">
+                <input type="text" name="valid_for" id="textInputValid_for" value=""><br>
+                {#                Listing:#}
+                {#                {% if id %}#}
+                {#                    {{ id }}<br>#}
+                {#                {% else %}#}
+                {#                    <select class="form-control" name="listing-id">#}
+                {#                        {% for l in listings %}#}
+                {#                            <option value="{{ l.id }}">{{  l.title}}</option>#}
+                {#                        {% endfor %}#}
+                {#                    </select><br>#}
+                {#                {% endif %}#}
 
                 Price:<br>
                 <input class="form-control" type="number" name="price"><br>
+                <input class="" type="number" name="listing-id" value="{{ id }}" style="height: 0px;width: 0px; border: 0px ">
                 images:<br>
                 <input class="form" type="file" name="image" accept="image/*" multiple><br>
                 Tag:
@@ -35,4 +38,9 @@
             </form>
         </div>
     </div>
+    <script>
+        function updateTextInputValid_for(val) {
+            document.getElementById('textInputValid_for').value=val;
+        }
+    </script>
 {% endblock %}

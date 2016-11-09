@@ -172,6 +172,7 @@ class offer_create(View):
             offer.valid_for = request.POST['valid_for']
             offer.title = request.POST['title']
             offer.description = request.POST['description']
+            print("Listing:",request.POST['listing-id'])
             offer.listing = Listing.objects.get(id= request.POST['listing-id'])
             offer.owner = User.objects.get(username=request.user.username)
             offer.price = request.POST['price']
@@ -188,7 +189,8 @@ class offer_create(View):
                 image.image = request.FILES.get('image')
                 image.save()
                 offer.image.add(image)
-            offer.tags.add(tag_check(request.POST['tag']))
+            for tag in str(request.POST['tag-item']).split(","):
+                    offer.tags.add(tag_check(tag))
 
             return custom_redirect('item:offer-detail' , 'id='+str(offer.id))
             # else:
