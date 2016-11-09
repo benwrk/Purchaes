@@ -25,7 +25,7 @@
         <textarea rows="4" cols="50" readonly>{{ offer.description }}</textarea><br>
         Valid for:<meter value="{{ offer.valid_for }}" min="0" max="10000">{{ offer.valid_for }} left!!!</meter>({{ offer.valid_for }} hours)<br>
         Price: {{ offer.price }}<br>
-        Tag: {% for t in offer.tags.all %}{{ t.tag }},{% endfor %}
+        Tag: {% for t in offer.tags.all %}<span class="tag label label-info">{{ t.tag }}</span>{% endfor %}
     </div>
     <script>
      var owl = $('.owl-carousel');
