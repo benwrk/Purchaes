@@ -140,13 +140,13 @@ def item_search(request):
     for tag in Tag.objects.filter(name=keyword).all():
         print(tag.name)
     tags = Listing.objects.filter(tags__in=Tag.objects.filter(name__icontains=keyword))
-    list = []
+    lists = []
     for listing in listings.all():
-        list.append(listing)
+        lists.append(listing)
     for tag in tags.all():
-        list.append(tag)
+        lists.append(tag)
     # list =
-    print(list)
+    print(list(set(lists)))
     # print (Item.objects.filter(category__name=category))
     # print (category)
     # print(type(listings))
@@ -157,7 +157,7 @@ def item_search(request):
     # print(listings)
     # print(type(listings))
     # print (items)
-    return render(request,'item_search.html',{'listings':list,'items':items})
+    return render(request,'item_search.html',{'listings':list(set(lists)),'items':items})
 
 class offer_create(View):
     def get(self,request):
