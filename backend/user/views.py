@@ -70,3 +70,31 @@ class Register(View):
 def user_profile(request):
     from .models import User
     return render(request, 'profile_view.html', {'webuser': User.objects.get(username=request.user.username)})
+
+class RedirectLoggingIn(View):
+    form_class = UserForm
+    template_name = 'login_form.html'
+
+    # display blank form
+    def get(self, request):
+        form = self.form_class(None)
+        return render(request, self.template_name, {'form': form, 'user': ""})
+
+    # process form data
+    def post(self, request):
+        form = self.form_class(request.POST)
+
+        if form.is_valid():
+
+            user = form.save(commit=False)
+
+            # cleaned (normalized) data
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return redirect('home:home')
+            return redirect('home:home')
+        return redirect('home:home')
