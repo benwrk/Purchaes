@@ -11,6 +11,3 @@
  - [@chinatip](https://github.com/chinatip)
  - [@moopiing](https://github.com/moopiing)
 
-## Don't forget
- - One person makemigration
- - other only migrate
