@@ -143,11 +143,10 @@
         {#    affix#}
         <nav class="bs-docs-sidebar hidden-print hidden-sm hidden-xs ">
             <ul class="nav nav-pills nav-stacked  inbox-divider list-group">
-                <li class="list-group-item"
-                 x`>
+                <li class="list-group-item" onclick="location.href='{% url 'item:item-search' %}?category=Food'">
                     Food
                 </li>
-                <li class="nav-pills nav-stacked labels-info list-group-item"  data-toggle="collapse"  href="#menu1">
+                <li class="nav-pills nav-stacked labels-info list-group-item"  data-toggle="collapse"  onclick="location.href='{% url 'item:item-search' %}?category=Home'">
 {#                    <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>&nbsp;#}
                     Home
                     {#                    <ul id="menu1" class="nav  collapse">#}
@@ -155,9 +154,9 @@
                     {#                    </ul>#}
                 </li>
                 <li class="list-group-item" onclick="location.href='{% url 'item:item-search' %}?category=Kitchen'">
-                    Kitchen<
+                    Kitchen
                 </li>
-                <li class="list-group-item onclick="href='{% url 'item:item-search' %}?category=Living+Room'">
+                <li class="list-group-item" onclick="location.href='{% url 'item:item-search' %}?category=Living+Room'">
                 Living Room
                 </li>
                 <li class="list-group-item" onclick="location.href='{% url 'item:item-search' %}?category=Electronic'">
