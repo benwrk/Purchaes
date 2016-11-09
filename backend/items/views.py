@@ -54,6 +54,7 @@ class item_create(View):
     def post(self, request):
         if request.user.is_authenticated:
             if Item.objects.filter(name=request.POST['name']).count() > 0:
+                print("NAME: ",request.POST['name'])
                 item = Item.objects.get(name=request.POST['name'])
             else:
                 item = Item()
@@ -61,8 +62,10 @@ class item_create(View):
                 item.description = request.POST['description-item']
                 item.brand = brand_check(request.POST['brand'])
                 item.category = category_check(request.POST['category'])
-                item.tags.add(tag_check(request.POST['tag-item']))
                 item.save()
+                print("TAG",tag_check(request.POST['tag-item']))
+                # item.tags.add()
+
                 if len(request.FILES.getlist('image'))>0:
                     for i in  request.FILES.getlist('image'):
                         image = Image()
@@ -129,9 +132,10 @@ def item_search(request):
     else:
         listings = Listing.objects.filter(title=keyword,item__in=Item.objects.filter(category__name=category))
     items = Item.objects.filter(category__name=keyword)
-    tag = Listing.objects.filter(tag)
+    tag = Listing.objects.filter(tags__in=Tag.objects.filter(name=keyword))
+    list = chain(listings,tag)
     # list =
-    print(type(list))
+    print(list)
     # print (Item.objects.filter(category__name=category))
     # print (category)
     # print(type(listings))
@@ -142,7 +146,7 @@ def item_search(request):
     # print(listings)
     # print(type(listings))
     # print (items)
-    return render(request,'item_search.html',{'listings':listings.all(),'items':items})
+    return render(request,'item_search.html',{'listings':list,'items':items})
 
 class offer_create(View):
     def get(self,request):

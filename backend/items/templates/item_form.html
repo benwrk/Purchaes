@@ -23,7 +23,7 @@
                 {#            <ul class="row" role="list" style="max-height: 150px;height: 150px; width: 1000px; overflow-y: hidden;    overflow-x:scroll;">#}
                 {% for item in items %}
                      <div>
-                        <div id="item-{{ item.id }}" value="{{ item.id }}"  class="thumbnail item excitedItem" onclick="changecolorItem(this)" style="width:100px;height:70px">
+                        <div id="item-{{ item.name }}" value="{{ item.name }}"  class="thumbnail item excitedItem" onclick="changecolorItem(this)" style="width:100px;height:70px">
                             <div class=""  >
                                     <img src="{{ item.image.all.0.image.url }}" style="border-radius: 5px; width: 20px; " width="20" height="20">
                                     <div class="caption" style="font-size:100%;">
@@ -38,7 +38,7 @@
             <button type="button" class="btn btn-info" onclick="clearItem" data-toggle="collapse" data-target="#addItem">add item</button><br>
         <fieldset data-role="collapsible"  class="collapse" id="addItem">
             Item name:<br>
-            <input class="form-control" type="text" name="name"><br>
+            <input id="itemName" class="form-control" type="text" name="name"><br>
             Item description:<br>
             <input class="form-control" type="text" name="description-item"><br>
             Brand:<br>
@@ -112,10 +112,11 @@
         var itemId;
         function changecolorItem(input) {
             var item = document.getElementsByClassName('excitedItem');
-            itemId=input.id.toString().replace("item-","");
+            name=input.id.toString().replace("item-","");
             for (var i = 0; i < item.length; i++) {
                 item[i].style.border= "1px solid #ddd";
             }
+            document.getElementById("itemName").value=name;
             input.style.border="2px solid  #0F0";
         }
         function changecolorBrand(input) {
