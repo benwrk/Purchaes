@@ -3,6 +3,7 @@ from django.shortcuts import render,redirect
 from .models import *
 from django.views.generic import View
 from user.models import User
+from itertools import chain
 
 from django.views.generic import DetailView
 # Create your views here.
@@ -15,7 +16,7 @@ def tag_check(input):
     except Tag.DoesNotExist:
         print('0')
         tag = Tag()
-        tag.title = input
+        tag.name = input
         tag.save()
     return tag
 
@@ -48,11 +49,12 @@ class item_create(View):
     fields = ['title', 'description']
 
     def get(self, request):
-        return render(request, 'item_form.html')
+        return render(request, 'item_form.html',{'items':Item.objects.all(),"brands":Brand.objects.all()})
 
     def post(self, request):
         if request.user.is_authenticated:
             if Item.objects.filter(name=request.POST['name']).count() > 0:
+                print("NAME: ",request.POST['name'])
                 item = Item.objects.get(name=request.POST['name'])
             else:
                 item = Item()
@@ -60,8 +62,11 @@ class item_create(View):
                 item.description = request.POST['description-item']
                 item.brand = brand_check(request.POST['brand'])
                 item.category = category_check(request.POST['category'])
-                item.tags.add(tag_check(request.POST['tag-item']))
                 item.save()
+                print("TAG",)
+                for item_tag in str(request.POST['tag-item']).split(","):
+                    item.tags.add(tag_check(item_tag))
+
                 if len(request.FILES.getlist('image'))>0:
                     for i in  request.FILES.getlist('image'):
                         image = Image()
@@ -83,9 +88,11 @@ class item_create(View):
             listing.owner = User.objects.get(username=request.user.username)
             listing.max_accepted_price = request.POST['max_accepted_price']
             listing.save()
-            listing.tags.add = tag_check(request.POST['tag-listing'])
+            # listing.tags.add = tag_check(request.POST['tag-listing'])
+            for listing_tag in str(request.POST['tag-listing']).split(","):
+                listing.tags.add(tag_check(listing_tag))
             return custom_redirect('item:item-detail' , 'id='+str(listing.id))
-        return redirect('item-item-create')
+        return redirect('item:item-add')
 
 def item_detail(request):
     i= request.GET.get('id', '')
@@ -121,13 +128,25 @@ def item_category(request):
 def item_search(request):
     keyword = request.GET.get('keyword','')
     category = request.GET.get('category','')
-    if keyword =='':
-        listings = Listing.objects.filter( item__in=Item.objects.filter(category__name=category))
+    if keyword=='' and category=='All':
+        listings = Listing.objects.all()
+    elif keyword =='':
+        listings = Listing.objects.filter( item__in=Item.objects.filter(category__name__icontains=category))
     elif category == 'All':
-        listings = Listing.objects.filter(title=keyword)
+        listings = Listing.objects.filter(title__icontains=keyword)
     else:
-        listings = Listing.objects.filter(title=keyword,item__in=Item.objects.filter(category__name=category))
-    items = Item.objects.filter(category__name=keyword)
+        listings = Listing.objects.filter(title=keyword,item__in=Item.objects.filter(category__name__icontains=category))
+    items = Item.objects.filter(category__name__icontains=keyword)
+    for tag in Tag.objects.filter(name=keyword).all():
+        print(tag.name)
+    tags = Listing.objects.filter(tags__in=Tag.objects.filter(name__icontains=keyword))
+    list = []
+    for listing in listings.all():
+        list.append(listing)
+    for tag in tags.all():
+        list.append(tag)
+    # list =
+    print(list)
     # print (Item.objects.filter(category__name=category))
     # print (category)
     # print(type(listings))
@@ -138,16 +157,17 @@ def item_search(request):
     # print(listings)
     # print(type(listings))
     # print (items)
-    return render(request,'item_search.html',{'listings':listings,'items':items})
+    return render(request,'item_search.html',{'listings':list,'items':items})
 
 class offer_create(View):
     def get(self,request):
-        id = 0
+        id = None
         if request.GET.get('id','') is not None:
             id = request.GET.get('id','')
-        return render(request,'offer_create.html',{"id":id})
+        return render(request,'offer_create.html',{"id":id,'listings':Listing.objects.all()})
     def post(self,request):
         if request.user.is_authenticated:
+            # if not Offer.objects.filter(title=request.POST['title']).count()>0:
             offer = Offer()
             offer.valid_for = request.POST['valid_for']
             offer.title = request.POST['title']
@@ -156,26 +176,34 @@ class offer_create(View):
             offer.owner = User.objects.get(username=request.user.username)
             offer.price = request.POST['price']
             offer.save()
-            if len(request.FILES.getList('image')) > 0:
-                for i in request.FILES.getList('image'):
+            if len(request.FILES.getlist('image')) > 0:
+                for i in request.FILES.getlist('image'):
                     image = Image()
                     image.image = i
                     image.save()
                     offer.image.add(image)
             else:
+                print('in',request.FILES.get('image'))
                 image = Image()
                 image.image = request.FILES.get('image')
                 image.save()
                 offer.image.add(image)
-            offer.tags.add(tag_check(request.POST['tag-item']))
-            return render(request,'offer_detail.html',{'offer':offer})
+            offer.tags.add(tag_check(request.POST['tag']))
+
+            return custom_redirect('item:offer-detail' , 'id='+str(offer.id))
+            # else:
+            #     return custom_redirect('item:offer-detail', 'id=' + str(Offer.objects.get(title=request.POST['title']).id))
 def offer_detail(request):
     offer = Offer.objects.get(id=request.GET.get('id',''))
     return render(request,'offer_detail.html',{"offer":offer})
+
+def offer_search(request):
+    id = request.GET.get('id','')
+    offers=Offer.objects.filter(listing_id=id)
+    return render(request,'offer_search.html',{'offers':offers})
 
 def handle_uploaded_file(f):
     with open('some/file/name.txt', 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
-
 

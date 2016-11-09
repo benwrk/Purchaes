@@ -2,40 +2,157 @@
 {% load static %}
 {% block header %}listing{% endblock %}
 {% block body %}
-    <script src="{% static "items/bootstrapTagsInput/bootstrap-tagsinput.js" %}"></script>
+    {% if user.is_authenticated %}
+    <script src="{% static "bootstrapTagsInput/bootstrap-tagsinput.js" %}"></script>
+    <script src="{% static "owl.carousel/owl.carousel.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'owl.carousel/assets/owl.carousel.css' %}">
     <div class="row">
-        <div class="col-md-6 col-xs-12 col-sm-8 col-lg-6">
-            <form class="form-group" action="{% url 'item:item-add' %}" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                Listing title:<br>
-                <input class="form-control" type="text" name="title"><br>
-                Listing Description:<br>
-                <input class="form-control" type="text" name="description"><br>
-                valid for(Hour):<br>
-                <input class="form-control" type="number" name="valid_for"><br>
-                Listing tag:<br>
-                <input class="form-control" type="text" role="combobox" name="tag-listing"><br>
-                Item name:<br>
-                <input class="form-control" type="text" name="name"><br>
-                Item description:<br>
-                <input class="form-control" type="text" name="description-item"><br>
-                Band:<br>
-                <input class="form-control" type="text" name="brand"><br>
-                Images:<br>
-                <input class="form" type="file" name="image" accept="image/*" multiple><br>
-                Item tag:<br>
-                <input class="form-control" type="text" role="combobox" name="tag-item"><br>
-                Category:<br>
-                <select class="form-control" name="category">
-                    <option value="">Select</option>
-                    <option value="Food">Food</option>
-                    <option value="Home">Home</option>
-                    <option value="Electronic">Electronic</option>
-                    <option value="Hardware">Hardware</option>
-                </select>
-                 <label for="price-max">Max Price:</label>
-                <input type="range" name="max_accepted_price" id="price-max" value="800" min="0" max="1000">
-                <input class="btn btn-primary" type="submit" value="submit">
-            </form>
-        </div>
+    <div class="col-md-6 col-xs-12 col-sm-8 col-lg-6">
+        <form class="form-group" id="listingForm" action="{% url 'item:item-add' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            Listing title:<br>
+            <input class="form-control" type="text" name="title"><br>
+            Listing Description:<br>
+            <input class="form-control" type="text" name="description"><br>
+            Valid for(Hour):<br>
+        <input type="range" name="rangeInput" min="0" max="1000" onchange="updateTextInputValid_for(this.value);">
+            <input type="text" name="valid_for" id="textInputValid_for" value=""><br>
+            Listing tag:<br>
+            <input class="form-control" type="text" data-role="tagsinput" name="tag-listing" size="10"><br>
+            <h3>Item</h3>
+            <div class="owl-carousel">
+                {#            <ul class="row" role="list" style="max-height: 150px;height: 150px; width: 1000px; overflow-y: hidden;    overflow-x:scroll;">#}
+                {% for item in items %}
+                     <div>
+                        <div id="item-{{ item.name }}" value="{{ item.name }}"  class="thumbnail item excitedItem" onclick="changecolorItem(this)" style="width:100px;height:70px">
+                            <div class=""  >
+                                    <img src="{{ item.image.all.0.image.url }}" style="border-radius: 5px; width: 20px; " width="20" height="20">
+                                    <div class="caption" style="font-size:100%;">
+                                        {{ item.name }}
+                                    </div>
+                            </div>
+                        </div>
+                     </div>
+                {% endfor %}
+                {#            </ul>#}
+            </div>
+            <button type="button" class="btn btn-info" onclick="clearItem" data-toggle="collapse" data-target="#addItem">add item</button><br>
+        <fieldset data-role="collapsible"  class="collapse" id="addItem">
+            Item name:<br>
+            <input id="itemName" class="form-control" type="text" name="name"><br>
+            Item description:<br>
+            <input class="form-control" type="text" name="description-item"><br>
+            Brand:<br>
+            <div class="owl-carousel">
+                {#            <ul class="row" role="list" style="max-height: 150px;height: 150px; width: 1000px; overflow-y: hidden;    overflow-x:scroll;">#}
+                {% for brand in brands %}
+                     <div>
+                        <div id="item-{{ brand.name }}" value="{{ brand.name }}"  class="thumbnail item brand" onclick="changecolorBrand(this)" style="width:100px;height:50px">
+                            <div class=""  >
+
+                                    <div class="caption" style="font-size:100%;text-align: center;">
+                                        {{ brand.name }}
+                                    </div>
+                            </div>
+                        </div>
+                     </div>
+                {% endfor %}
+                {#            </ul>#}
+            </div>
+            other
+            <input id="brand" class="form-control" type="text" name="brand" onclick="brandOther()"><br>
+            Images:<br>
+            <input class="form" type="file" name="image" accept="image/*" multiple><br>
+            Item tag:<br>
+            <input class="form-control" type="text" data-role="tagsinput" name="tag-item" size="10"><br>
+            Category:<br>
+
+            <select  class="form-control" name="category">
+                <option value="">Select</option>
+                <option value="Food">Food</option>
+                <option value="Home">Home</option>
+                <option value="Electronic">Electronic</option>
+                <option value="Hardware">Hardware</option>
+            </select>
+            </fieldset>
+            <label for="price-max">Max Price:</label>
+            <input type="range" name="rangeInput" min="0" max="1000" onchange="updateTextInputPrice(this.value);">
+            <input type="text" name="max_accepted_price" id="textInputPrice" value=""><br>
+            <input class="btn btn-primary" type="button" onclick="sub()" value="submit">
+        </form>
+    </div>
+    <script>
+        var owl = $('.owl-carousel');
+        owl.owlCarousel({
+            loop:false,
+            nav:false   ,
+            margin:20,
+            responsive:{
+                0:{
+                    items:2
+                },
+                600:{
+                    items:3
+                },
+                960:{
+                    items:3
+                },
+                1200:{
+                    items:4
+                }
+            }
+        });
+        owl.on('mousewheel', '.owl-stage', function (e) {
+            if (e.deltaY>0) {
+                owl.trigger('next.owl');
+            } else {
+                owl.trigger('prev.owl');
+            }
+            e.preventDefault();
+        });
+        var itemId;
+        function changecolorItem(input) {
+            var item = document.getElementsByClassName('excitedItem');
+            name=input.id.toString().replace("item-","");
+            for (var i = 0; i < item.length; i++) {
+                item[i].style.border= "1px solid #ddd";
+            }
+            document.getElementById("itemName").value=name;
+            input.style.border="2px solid  #0F0";
+        }
+        function changecolorBrand(input) {
+            var item = document.getElementsByClassName('brand');
+            itemId=input.id.toString().replace("item-","");
+            for (var i = 0; i < item.length; i++) {
+                item[i].style.border= "1px solid #ddd";
+            }
+            document.getElementById("brand").setAttribute("brand",input.id.toString().replace("item-",""));
+            input.style.border="2px solid  #0F0";
+        }
+        function sub() {
+            var input = document.createElement("input");
+            input.setAttribute("item-id",itemId);
+            document.getElementById("listingForm").appendChild(input);
+            document.getElementById("listingForm").submit();
+        }
+        function clearItem() {
+            itemId=undefined;
+        }
+        function brandOther(){
+            var item = document.getElementsByClassName('brand');
+            for (var i = 0; i < item.length; i++) {
+                item[i].style.border= "1px solid #ddd";
+            }
+        }
+
+        function updateTextInputPrice(val) {
+          document.getElementById('textInputPrice').value=val;
+        }
+        function updateTextInputValid_for(val) {
+          document.getElementById('textInputValid_for').value=val;
+        }
+    </script>
+    {% else %}
+        <h2>Please login!!!</h2>
+    {% endif %}
 {% endblock %}

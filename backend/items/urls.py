@@ -9,5 +9,6 @@ urlpatterns = [
     url(r'^category/$',views.item_category,name='item-category'),
     url(r'^offer-create/$', views.offer_create.as_view(), name='offer-create'),
     url(r'^offer-detail/$', views.offer_detail, name='offer-detail'),
+    url(r'^offer-search/$',views.offer_search,name='offer-search'),
     url(r'^search/$',views.item_search,name='item-search'),
 ]

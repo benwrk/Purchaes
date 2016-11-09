@@ -1,15 +1,19 @@
 {% extends 'base.html' %}
 
 {% block title%}
-
+    {% load static %}
 {% endblock %}
 
+
 {% block body %}
-	<style type="text/css">
+    <link rel="stylesheet" type="text/css" href="{% static "jcarousel/jcarousel.connected-carousels.css"%}">
+    <script src="{% static "jcarousel/jcarousel.min.js" %}"></script>
+    <script src="{% static "jcarousel/jcarousel.connected-carousels.js" %}"></script>
+    <style type="text/css">
         button { margin-right: 15px; }
         .col-md-4 { font: bold Georgia;
-        	color: #808084;
-        	margin-bottom: 15px; }
+            color: #808084;
+            margin-bottom: 15px; }
         .detail-box { margin-right: 40px;  }
 
     </style>
@@ -22,7 +26,7 @@
 
         <div class="col-md-6">
 
-                <img src="{% with listing.item.image.all|first as image %}{{image.image.url }}{% endwith %}">
+            <img src="{% with listing.item.image.all|first as image %}{{image.image.url }}{% endwith %}">
 
         </div>
         <div class="col-md-6">
@@ -99,21 +103,39 @@
 
     </div>
     <div class="row">
-            <div class="col-md-6">
-                <div class="row">Extra Images</div>
-                <div class="row">
-                    {% for image in listing.item.image.all %}
-                        <img src="{{ image.image.url }}">
-                    {% endfor %}
+        <div class="col-md-6">
+            <div class="row">Extra Images</div>
+            <div class="connected-carousels">
+                <div class="stage">
+                    <div class="carousel carousel-stage">
+                        <ul>
+                            {% for image in listing.item.image.all %}
+                                <li><img src="{{ image.image.url }}"  width="250" height="250" alt=""> </li>
+                            {% endfor %}
+                    </div>
+                    <a href="#" class="prev prev-stage"><span>&lsaquo;</span></a>
+                    <a href="#" class="next next-stage"><span>&rsaquo;</span></a>
+                </div>
+                <div class="navigation">
+                    <a href="#" class="prev prev-navigation">&lsaquo;</a>
+                    <a href="#" class="next next-navigation">&rsaquo;</a>
+                    <div class="carousel carousel-navigation">
+                        <ul>
+                            {% for image in listing.item.image.all %}
+                                <li><img src="{{ image.image.url }}"  width="50" height="50" alt=""> </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-6 buttonForOrder">
-            	<CENTER>
-	                <button type="button" class="btn btn-info" hres="{%url 'item:item-offer'}">Bid Now</button>
-	                <button type="button" class="btn btn-info">Add to Order</button>
-            	</CENTER>
-            </div>
         </div>
+        <div class="col-md-6 buttonForOrder">
+            <CENTER>
+                <button type="button" class="btn btn-info" onclick="location.href='{%url 'item:offer-create'%}?id={{ listing.id }}'">Offer Now</button>
+                <button type="button" class="btn btn-info" onclick="location.href='{%url 'item:offer-search'%}?id={{ listing.id }}'">View Offer</button>
+            </CENTER>
+        </div>
+    </div>
 
 
 

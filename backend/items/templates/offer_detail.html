@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %}Offer {% endblock %}
+{% block body %}
+    <div class="row">
+        <h2>{{ offer.title }}</h2>
+        <img src="{% with offer.image.all|first as image %}{{image.image.url }}{% endwith %}" class="media-photo" height="42" width="42"><br>
+        Description:<br>
+        <textarea rows="4" cols="50">{{ offer.description }}</textarea><br>
+        Valid for:<meter value="{{ offer.valid_for }}" min="0" max="10000">{{ offer.valid_for }} left!!!</meter>({{ offer.valid_for }} hours)<br>
+        Price: {{ offer.price }}<br>
+        Tag: {% for t in offer.tags.all       %}{{ t.tag }},{% endfor %}
+    </div>
 
-</body>
-</html>
+{% endblock %}
