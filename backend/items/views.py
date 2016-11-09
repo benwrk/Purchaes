@@ -131,15 +131,15 @@ def item_search(request):
     if keyword=='' and category=='All':
         listings = Listing.objects.all()
     elif keyword =='':
-        listings = Listing.objects.filter( item__in=Item.objects.filter(category__name=category))
+        listings = Listing.objects.filter( item__in=Item.objects.filter(category__name__icontains=category))
     elif category == 'All':
-        listings = Listing.objects.filter(title=keyword)
+        listings = Listing.objects.filter(title__icontains=keyword)
     else:
-        listings = Listing.objects.filter(title=keyword,item__in=Item.objects.filter(category__name=category))
-    items = Item.objects.filter(category__name=keyword)
+        listings = Listing.objects.filter(title=keyword,item__in=Item.objects.filter(category__name__icontains=category))
+    items = Item.objects.filter(category__name__icontains=keyword)
     for tag in Tag.objects.filter(name=keyword).all():
         print(tag.name)
-    tags = Listing.objects.filter(tags__in=Tag.objects.filter(name=keyword))
+    tags = Listing.objects.filter(tags__in=Tag.objects.filter(name__icontains=keyword))
     list = []
     for listing in listings.all():
         list.append(listing)
