@@ -103,7 +103,37 @@
                 <div class="row">Extra Images</div>
                 <div class="row">
                     {% for image in listing.item.image.all %}
-                        <img src="{{ image.image.url }}">
+                         <div class="connected-carousels">
+                		<div class="stage">
+                    		<div class="carousel carousel-stage" data-jcarousel="true">
+                        		<ul style="left: -3000px; top: 0px;">
+                            		<li><img src="{{ image.image.url }}"width="600" height="400" alt=""></li>
+                            		<li><img src="{{ image.image.url }}"width="600" height="400" alt=""></li>
+                           		 	<li><img src="{{ image.image.url }}"width="600" height="400" alt=""></li>
+                            		<li><img src="{{ image.image.url }}"width="600" height="400" alt=""></li>
+                            		<li><img src="{{ image.image.url }}"width="600" height="400" alt=""></li>
+                            		<li><img src="{{ image.image.url }}"width="600" height="400" alt=""></li>
+                        		</ul>
+                    		</div>
+                    <a href="#" class="prev prev-stage" data-jcarouselcontrol="true"><span>‹</span></a>
+                    <a href="#" class="next next-stage inactive" data-jcarouselcontrol="true"><span>›</span></a>
+                		</div>
+
+                <div class="navigation">
+                    <a href="#" class="prev prev-navigation" data-jcarouselcontrol="true">‹</a>
+                    <a href="#" class="next next-navigation inactive" data-jcarouselcontrol="true">›</a>
+                    <div class="carousel carousel-navigation" data-jcarousel="true">
+                        <ul style="left: -120px; top: 0px;">
+                            <li data-jcarouselcontrol="true" class=""> <img src="{{ image.image.url }}"width="50" height="50" alt=""></li>
+                            <li data-jcarouselcontrol="true" class=""> <img src="{{ image.image.url }}"width="50" height="50" alt=""></li>
+                            <li data-jcarouselcontrol="true" class=""> <img src="{{ image.image.url }}"width="50" height="50" alt=""></li>
+                            <li data-jcarouselcontrol="true" class=""> <img src="{{ image.image.url }}"width="50" height="50" alt=""></li>
+                            <li data-jcarouselcontrol="true" class=""> <img src="{{ image.image.url }}"width="50" height="50" alt=""></li>
+                            <li data-jcarouselcontrol="true" class=""> <img src="{{ image.image.url }}"width="50" height="50" alt=""></li>
+                        </ul>
+                    </div>
+                </div>
+            </div><img src="{{ image.image.url }}">
                     {% endfor %}
                 </div>
             </div>
