@@ -14,7 +14,8 @@
             Listing Description:<br>
             <input class="form-control" type="text" name="description"><br>
             Valid for(Hour):<br>
-            <input type="range" name="valid_for" id="price-max" value="800" min="0" max="1000"><br>
+        <input type="range" name="rangeInput" min="0" max="1000" onchange="updateTextInputValid_for(this.value);">
+            <input type="text" name="valid_for" id="textInputValid_for" value=""><br>
             Listing tag:<br>
             <input class="form-control" type="text" data-role="tagsinput" name="tag-listing" size="10"><br>
             <h3>Item</h3>
@@ -22,7 +23,7 @@
                 {#            <ul class="row" role="list" style="max-height: 150px;height: 150px; width: 1000px; overflow-y: hidden;    overflow-x:scroll;">#}
                 {% for item in items %}
                      <div>
-                        <div id="item-{{ item.id }}" value="{{ item.id }}"  class="thumbnail item" onclick="changecolor(this)" style="width:100px;height:70px">
+                        <div id="item-{{ item.id }}" value="{{ item.id }}"  class="thumbnail item excitedItem" onclick="changecolorItem(this)" style="width:100px;height:70px">
                             <div class=""  >
                                     <img src="{{ item.image.all.0.image.url }}" style="border-radius: 5px; width: 20px; " width="20" height="20">
                                     <div class="caption" style="font-size:100%;">
@@ -41,10 +42,27 @@
             Item description:<br>
             <input class="form-control" type="text" name="description-item"><br>
             Brand:<br>
-            <input class="form-control" type="text" name="brand"><br>
+            <div class="owl-carousel">
+                {#            <ul class="row" role="list" style="max-height: 150px;height: 150px; width: 1000px; overflow-y: hidden;    overflow-x:scroll;">#}
+                {% for brand in brands %}
+                     <div>
+                        <div id="item-{{ brand.name }}" value="{{ brand.name }}"  class="thumbnail item brand" onclick="changecolorBrand(this)" style="width:100px;height:50px">
+                            <div class=""  >
+
+                                    <div class="caption" style="font-size:100%;text-align: center;">
+                                        {{ brand.name }}
+                                    </div>
+                            </div>
+                        </div>
+                     </div>
+                {% endfor %}
+                {#            </ul>#}
+            </div>
+            other
+            <input id="brand" class="form-control" type="text" name="brand" onclick="brandOther()"><br>
             Images:<br>
             <input class="form" type="file" name="image" accept="image/*" multiple><br>
-            Item tag:<br> i
+            Item tag:<br>
             <input class="form-control" type="text" data-role="tagsinput" name="tag-item" size="10"><br>
             Category:<br>
 
@@ -57,7 +75,8 @@
             </select>
             </fieldset>
             <label for="price-max">Max Price:</label>
-            <input type="range" name="max_accepted_price" id="price-max" value="800" min="0" max="1000">
+            <input type="range" name="rangeInput" min="0" max="1000" onchange="updateTextInputPrice(this.value);">
+            <input type="text" name="max_accepted_price" id="textInputPrice" value=""><br>
             <input class="btn btn-primary" type="button" onclick="sub()" value="submit">
         </form>
     </div>
@@ -91,15 +110,21 @@
             e.preventDefault();
         });
         var itemId;
-        function changecolor(input) {
-            var item = document.getElementsByClassName('thumbnail');
-            console.log(input.id.toString().replace("item-",""));
-            console.log(input.innerHTML);
-            console.log(input);
+        function changecolorItem(input) {
+            var item = document.getElementsByClassName('excitedItem');
             itemId=input.id.toString().replace("item-","");
             for (var i = 0; i < item.length; i++) {
                 item[i].style.border= "1px solid #ddd";
             }
+            input.style.border="2px solid  #0F0";
+        }
+        function changecolorBrand(input) {
+            var item = document.getElementsByClassName('brand');
+            itemId=input.id.toString().replace("item-","");
+            for (var i = 0; i < item.length; i++) {
+                item[i].style.border= "1px solid #ddd";
+            }
+            document.getElementById("brand").setAttribute("brand",input.id.toString().replace("item-",""));
             input.style.border="2px solid  #0F0";
         }
         function sub() {
@@ -109,6 +134,23 @@
         }
         function clearItem() {
             itemId=undefined;
+        }
+        function brandOther(){
+            var item = document.getElementsByClassName('brand');
+            for (var i = 0; i < item.length; i++) {
+                item[i].style.border= "1px solid #ddd";
+            }
+        }
+        priceRange = document.getElementById("price-max");
+        priceRange.addEventListener("change",function () {
+            console.log("innnm");
+            document.getElementById("current-price").update("415");
+        })
+        function updateTextInputPrice(val) {
+          document.getElementById('textInputPrice').value=val;
+        }
+        function updateTextInputValid_for(val) {
+          document.getElementById('textInputValid_for').value=val;
         }
     </script>
 {% endblock %}
