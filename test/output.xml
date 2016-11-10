@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20161110 15:46:21.987" generator="Robot 3.0 (Python 2.7.12 on win32)">
+<suite source="D:\My projects\Purchaes\test\register-user-test.robot" id="s1" name="Register-User-Test">
+<test id="s1-t1" name="Register User">
+<kw name="Open Purcha.es">
+<kw name="Open Browser" library="Selenium2Library">
+<doc>Opens a new browser instance to given URL.</doc>
+<arguments>
+<arg>http://128.199.192.241:8000</arg>
+<arg>googlechrome</arg>
+</arguments>
+<msg timestamp="20161110 15:46:23.329" level="INFO">Opening browser 'googlechrome' to base url 'http://128.199.192.241:8000'</msg>
+<status status="PASS" endtime="20161110 15:46:31.094" starttime="20161110 15:46:23.329"></status>
+</kw>
+<status status="PASS" endtime="20161110 15:46:31.094" starttime="20161110 15:46:23.329"></status>
+</kw>
+<kw name="Register">
+<kw name="Wait Until Page Contains" library="Selenium2Library">
+<doc>Waits until `text` appears on current page.</doc>
+<arguments>
+<arg>Register</arg>
+</arguments>
+<status status="PASS" endtime="20161110 15:46:31.111" starttime="20161110 15:46:31.096"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>link=Register</arg>
+</arguments>
+<msg timestamp="20161110 15:46:31.112" level="INFO">Clicking element 'link=Register'.</msg>
+<status status="PASS" endtime="20161110 15:46:31.403" starttime="20161110 15:46:31.111"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="Selenium2Library">
+<doc>Waits until `text` appears on current page.</doc>
+<arguments>
+<arg>Username:</arg>
+</arguments>
+<status status="PASS" endtime="20161110 15:46:31.420" starttime="20161110 15:46:31.404"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id=register-form-username</arg>
+<arg>test998</arg>
+</arguments>
+<msg timestamp="20161110 15:46:31.421" level="INFO">Typing text 'test998' into text field 'id=register-form-username'</msg>
+<status status="PASS" endtime="20161110 15:46:31.485" starttime="20161110 15:46:31.420"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id=register-form-password</arg>
+<arg>pass</arg>
+</arguments>
+<msg timestamp="20161110 15:46:31.486" level="INFO">Typing text 'pass' into text field 'id=register-form-password'</msg>
+<status status="PASS" endtime="20161110 15:46:31.546" starttime="20161110 15:46:31.485"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id=register-form-email</arg>
+<arg>test@mail.com</arg>
+</arguments>
+<msg timestamp="20161110 15:46:31.547" level="INFO">Typing text 'test@mail.com' into text field 'id=register-form-email'</msg>
+<status status="PASS" endtime="20161110 15:46:31.610" starttime="20161110 15:46:31.546"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id=register-form-bio</arg>
+<arg>test bio</arg>
+</arguments>
+<msg timestamp="20161110 15:46:31.611" level="INFO">Typing text 'test bio' into text field 'id=register-form-bio'</msg>
+<status status="PASS" endtime="20161110 15:46:31.685" starttime="20161110 15:46:31.610"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>id=register-form-register</arg>
+</arguments>
+<msg timestamp="20161110 15:46:31.686" level="INFO">Clicking element 'id=register-form-register'.</msg>
+<status status="PASS" endtime="20161110 15:46:32.366" starttime="20161110 15:46:31.685"></status>
+</kw>
+<status status="PASS" endtime="20161110 15:46:32.367" starttime="20161110 15:46:31.096"></status>
+</kw>
+<kw name="Check Login">
+<kw name="Wait Until Page Contains" library="Selenium2Library">
+<doc>Waits until `text` appears on current page.</doc>
+<arguments>
+<arg>Profile</arg>
+</arguments>
+<status status="PASS" endtime="20161110 15:46:32.388" starttime="20161110 15:46:32.369"></status>
+</kw>
+<status status="PASS" endtime="20161110 15:46:32.388" starttime="20161110 15:46:32.368"></status>
+</kw>
+<kw name="Exit Purcha.es">
+<kw name="Close Browser" library="Selenium2Library">
+<doc>Closes the current browser.</doc>
+<status status="PASS" endtime="20161110 15:46:35.567" starttime="20161110 15:46:32.389"></status>
+</kw>
+<status status="PASS" endtime="20161110 15:46:35.567" starttime="20161110 15:46:32.389"></status>
+</kw>
+<timeout value="2 minutes"></timeout>
+<status status="PASS" endtime="20161110 15:46:35.567" critical="yes" starttime="20161110 15:46:23.329"></status>
+</test>
+<status status="PASS" endtime="20161110 15:46:35.567" starttime="20161110 15:46:21.987"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="1">Critical Tests</stat>
+<stat fail="0" pass="1">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="Register-User-Test" pass="1">Register-User-Test</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
