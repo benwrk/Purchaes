@@ -191,8 +191,8 @@ class offer_create(View):
                 image.image = request.FILES.get('image')
                 image.save()
                 offer.image.add(image)
-            for tag in str(request.POST['tag-item']).split(","):
-                    offer.tags.add(tag_check(tag))
+            for tag in str(request.POST['tag']).split(","):
+                offer.tags.add(tag_check(tag))
 
             return custom_redirect('item:offer-detail' , 'id='+str(offer.id))
             # else:
