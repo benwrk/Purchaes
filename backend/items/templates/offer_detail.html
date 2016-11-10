@@ -23,12 +23,23 @@
         {#        <img src="{% with offer.image.all|first as image %}{{image.image.url }}{% endwith %}" class="media-photo" height="42" width="42"><br>#}
         Description:<br>
         <textarea rows="4" cols="50" readonly>{{ offer.description }}</textarea><br>
-        Valid for:<meter value="{{ offer.valid_for }}" min="0" max="10000">{{ offer.valid_for }} left!!!</meter>({{ offer.valid_for }} hours)<br>
+        Valid for:
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="{{ offer.valid_for }}"
+                 aria-valuemin="0" aria-valuemax="1000"  style="width: {{ valid_for_width}}%">
+                {{ offer.valid_for }}h left!!!
+            </div>
+        </div><br>
         Price: {{ offer.price }}<br>
         Tag: {% for t in offer.tags.all %}
         <span class="tag label label-info">{{ t.name }}</span>
+
+
     {% endfor %}
-    </div>
+
+    </div><br>
+    <input class="btn btn-primary" type="button" onclick="" value="Accept">
+    <input class="btn btn-danger" type="button" onclick="" value="Delete">
     <script>
         var owl = $('.owl-carousel');
         owl.owlCarousel({
