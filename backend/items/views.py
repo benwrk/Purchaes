@@ -199,7 +199,7 @@ class offer_create(View):
             #     return custom_redirect('item:offer-detail', 'id=' + str(Offer.objects.get(title=request.POST['title']).id))
 def offer_detail(request):
     offer = Offer.objects.get(id=request.GET.get('id',''))
-    return render(request,'offer_detail.html',{"offer":offer})
+    return render(request,'offer_detail.html',{"offer":offer,"valid_for_width":offer.valid_for/10})
 
 def offer_search(request):
     id = request.GET.get('id','')
