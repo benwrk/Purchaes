@@ -26,7 +26,7 @@
 
         <div class="col-md-6">
 
-            <img src="{% with listing.item.image.all|first as image %}{{image.image.url }}{% endwith %}">
+            <img src="{% with listing.item.image.all|first as image %}{{image.image.url }}{% endwith %}" width="300" height="300">
 
         </div>
         <div class="col-md-6">
@@ -110,15 +110,15 @@
                     <div class="carousel carousel-stage">
                         <ul>
                             {% for image in listing.item.image.all %}
-                                <li><img src="{{ image.image.url }}"  width="250" height="250" alt=""> </li>
+                                <li><img src="{{ image.image.url }}"  width="400" height="400" alt=""> </li>
                             {% endfor %}
+                        </ul>
                     </div>
                     <a href="#" class="prev prev-stage"><span>&lsaquo;</span></a>
                     <a href="#" class="next next-stage"><span>&rsaquo;</span></a>
                 </div>
                 <div class="navigation">
-                    <a href="#" class="prev prev-navigation">&lsaquo;</a>
-                    <a href="#" class="next next-navigation">&rsaquo;</a>
+
                     <div class="carousel carousel-navigation">
                         <ul>
                             {% for image in listing.item.image.all %}
