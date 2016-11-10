@@ -67,17 +67,24 @@
                         Home
                     </a>
                 </li>
-{#                <li class="">#}
-{#                    <a href="{% url 'home:market' %}">#}
-{#                        <span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span>&nbsp;#}
-{#                        market#}
-{#                    </a>#}
-{#                </li>#}
+                {#                <li class="">#}
+                {#                    <a href="{% url 'home:market' %}">#}
+                {#                        <span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span>&nbsp;#}
+                {#                        market#}
+                {#                    </a>#}
+                {#                </li>#}
                 <li class="">
-                    <a href="{% url 'item:item-add' %}">
-                        <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp;
-                        Listing
-                    </a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'item:item-add' %}">
+                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp;
+                            Listing
+                        </a>
+                    {% else %}
+                        <a href="{% url 'user:redirect-login' %}">
+                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp;
+                            Listing
+                        </a>
+                    {% endif %}
                 </li>
             </ul>
 
@@ -147,7 +154,7 @@
                     Food
                 </li>
                 <li class="nav-pills nav-stacked labels-info list-group-item"  data-toggle="collapse"  onclick="location.href='{% url 'item:item-search' %}?category=Home'">
-{#                    <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>&nbsp;#}
+                    {#                    <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>&nbsp;#}
                     Home
                     {#                    <ul id="menu1" class="nav  collapse">#}
 
@@ -157,7 +164,7 @@
                     Kitchen
                 </li>
                 <li class="list-group-item" onclick="location.href='{% url 'item:item-search' %}?category=Living+Room'">
-                Living Room
+                    Living Room
                 </li>
                 <li class="list-group-item" onclick="location.href='{% url 'item:item-search' %}?category=Electronic'">
                     Electronic
