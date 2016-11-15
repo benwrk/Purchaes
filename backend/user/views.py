@@ -69,7 +69,13 @@ class Register(View):
 
 def user_profile(request):
     from .models import User
-    return render(request, 'profile_view.html', {'webuser': User.objects.get(username=request.user.username)})
+    from items.models import Listing, Offer
+    user = User.objects.get(username=request.user.username)
+    listings =  Listing.objects.filter(owner=user)
+    print(listings)
+    offers = Offer.objects.filter(listing__in=listings)
+    print(offers)
+    return render(request, 'profile_view.html', {'webuser': user, "listings":listings, "offers":offers})
 
 class RedirectLoggingIn(View):
     form_class = UserForm

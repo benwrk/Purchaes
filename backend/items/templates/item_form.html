@@ -24,13 +24,11 @@
                 {#            <ul class="row" role="list" style="max-height: 150px;height: 150px; width: 1000px; overflow-y: hidden;    overflow-x:scroll;">#}
                 {% for item in items %}
                      <div>
-                        <div id="item-{{ item.name }}" value="{{ item.name }}"  class="thumbnail item excitedItem" onclick="changecolorItem(this)" style="width:100px;height:70px">
-                            <div class=""  >
-                                    <img src="{{ item.image.all.0.image.url }}" style="border-radius: 5px; width: 20px; margin: 0px auto" width="5" height="25">
-                                    <div class="caption" style="font-size:100%; margin: 0px auto">
+                        <div id="item-{{ item.name }}" value="{{ item.name }}"  class="thumbnail item excitedItem" onclick="changecolorItem(this)" style="width:100px">
+                                    <img src="{{ item.image.all.0.image.url }}" style="border-radius: 5px; width: 40px; margin: 0px auto" width="50px" height="50px">
+                                    <div class="caption" style="font-size:70%; margin: 0px auto; height: 30px; word-wrap: break-word;   overflow: hidden;text-overflow: ellipsis; -o-text-overflow: ellipsis; white-space: nowrap;">
                                         {{ item.name }}
                                     </div>
-                            </div>
                         </div>
                      </div>
                 {% endfor %}
@@ -71,6 +69,8 @@
                 <option value="">Select</option>
                 <option value="Food">Food</option>
                 <option value="Home">Home</option>
+                <option value="Kitchen">Kitchen</option>
+{#                <option value="Living-Room">Living Room</option>#}
                 <option value="Electronic">Electronic</option>
                 <option value="Hardware">Hardware</option>
             </select>
