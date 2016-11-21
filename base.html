@@ -193,7 +193,7 @@
         </div>
     </section>
 
-    <!-- Item Modals -->
+    <!-- Item Detail -->
     <div class="item-modal modal fade" id="itemModel" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -207,7 +207,7 @@
                     <div class="row">
                         <div class="col-lg-8 col-lg-offset-2">
                             <div class="modal-body">
-                                <!-- Project Details Go Here -->
+                                <!-- Item Details Go Here -->
                                 <h2>Round Icon</h2>
                                 <p class="item-intro text-muted">50 THB</p>
                                 <img class="img-responsive img-centered" src="img/items/roundicons-free.png" alt="">
@@ -338,41 +338,44 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
+                    <h2 class="section-heading">Login</h2>
+                    <div class="form-group">
+                        <div class="form-group">
+	                        <input type="text" class="form-control" placeholder="Your Username *" id="login_username" required data-validation-required-message="Please enter your username." style="background-color: black">
+	                        <p class="help-block text-danger"></p>
+                    	</div>
+                    	<div class="form-group">
+	                        <input type="email" class="form-control" placeholder="(Or) Your Email *" id="login_email" required data-validation-required-message="Please enter your email." style="background-color: black">
+	                        <p class="help-block text-danger"></p>
+                    	</div>
+	                    <div class="form-group">
+	                        <input type="password" class="form-control" placeholder="Your Password *" id="login_password" required data-validation-required-message="Please enter your password." style="background-color: black">
+	                        <p class="help-block text-danger"></p>
+	                    </div>
+	                    <div class="col-lg-12 text-center">
+	                        <li>
+	                        	<a href="javascript:showhide('register')" class="btn btn-xl">Need account ?</a>
+	                        	<a href="##" class="btn btn-xl">Login !</a>
+	                        </li>
+	                    </div>
+                    </div>
+                </div>
+                <div class="col-md-6" div id="register" style="display:none;">
                     <h2 class="section-heading">Register</h2>
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Your Username *" id="regis_username" required data-validation-required-message="Please enter your username." style="background-color: black">
                         <p class="help-block text-danger"></p>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Your Password *" id="regis_password" required data-validation-required-message="Please enter your password." style="background-color: black">
-                        <p class="help-block text-danger"></p>
-                    </div>
-                    <div class="form-group">
                         <input type="email" class="form-control" placeholder="Your Email *" id="email" required data-validation-required-message="Please enter your email address." style="background-color: black">
                         <p class="help-block text-danger"></p>
                     </div>
-                    <div class="col-lg-12 text-center">
-                        <button type="submit" class="btn btn-xl">Register</button>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <h2 class="section-heading">Login</h2>
                     <div class="form-group">
-                        <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Your Username *" id="login_username" required data-validation-required-message="Please enter your username." style="background-color: black">
-                        <p class="help-block text-danger"></p>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Your Password *" id="login_password" required data-validation-required-message="Please enter your password." style="background-color: black">
-                        <p class="help-block text-danger"></p>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Your Password *" id="login_password" required data-validation-required-message="Please enter your password." style="background-color: black">
+                        <input type="password" class="form-control" placeholder="Your Password *" id="regis_password" required data-validation-required-message="Please enter your password." style="background-color: black">
                         <p class="help-block text-danger"></p>
                     </div>
                     <div class="col-lg-12 text-center">
-                        <button type="submit" class="btn btn-xl">Login</button>
-                    </div>
+                        <button type="submit" class="btn btn-xl">Register !</button>
                     </div>
                 </div>
                 <div class="clearfix"></div>
