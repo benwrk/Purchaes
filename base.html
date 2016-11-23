@@ -31,6 +31,8 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+
+
 </head>
 
 <body id="page-top" class="index">
@@ -194,7 +196,7 @@
     </section>
 
     <!-- Item Detail -->
-    <div class="item-modal modal fade" id="itemModel" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="item-modal modal fade" id="itemModel" tabindex="-1" role="dialog" aria-hidden="true" >
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="close-modal" data-dismiss="modal">
@@ -203,16 +205,42 @@
                         </div>
                     </div>
                 </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8 col-lg-offset-2">
-                            <div class="modal-body">
-                                <!-- Item Details Go Here -->
-                                <h2>Round Icon</h2>
-                                <p class="item-intro text-muted">50 THB</p>
-                                <img class="img-responsive img-centered" src="img/items/roundicons-free.png" alt="">
-                                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close </button>
-                            </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="modal-body">
+                            <!-- Item Details Go Here -->
+                            <div class="row" id="itemModel-detail" style="display:block;">
+                                <h2>Item Detail</h2>
+                                <h3 class="section-subheading text-muted">Round Icon</h3><br>
+						        <div class="col-md-3">
+                                    <div class="gallery" align="center"><br />
+                                        <div class="preview" align="center">
+                                            <img name="preview" src="img/items/sample1.jpg" alt="">
+                                        </div>
+                                        <div class="thumbnails">
+                                            <img onmouseover="preview.src=img1.src" name="img1" src="img/items/sample1.jpg" alt=""/>
+                                            <img onmouseover="preview.src=img2.src" name="img2" src="img/items/sample2.jpg" alt=""/>
+                                            <img onmouseover="preview.src=img3.src" name="img3" src="img/items/sample3.jpg" alt=""/>
+                                        </div>
+                                    </div>
+						        </div>
+
+                                <div id="content-container" align="left">
+						            <div class="form-group">
+                                        <p>Create Date : 23-Nov-2016</p>
+                                        <p>Valid For : 24 Hours</p>
+                                        <p>Item Name : Round Icon</p>
+                                        <p>Brand : Icon</p>
+                                        <p>Category : House</p>
+                                        <p>Max Accepted Price : 100 THB</p>
+                                        <p>Tags : Icon</p>
+                                        <p>Description : It's an icon</p>
+                                        <button class="btn btn-xl" onclick="switchLR('itemModel-detail');switchLR('itemModel-detail');">Item Detail</button>
+                                        <button class="btn btn-xl" onclick="switchLR('itemModel-detail');switchLR('itemModel-detail');">View Offer</button>
+                                        <button class="btn btn-xl" onclick="switchLR('itemModel-detail');switchLR('itemModel-detail');">Offer Now !</button>
+						            </div>
+						        </div>
+						    </div>
                         </div>
                     </div>
                 </div>
@@ -314,7 +342,7 @@
 
                     <div class="col-lg-12 text-center">
                         <h5 style="color:white"> .</h5>
-                        <button type="search" class="btn btn-xl">Search !</button>
+                        <button type="search" class="btn btn-xl">Search Now !</button>
                     </div>
                 </div>
             </div>
@@ -356,7 +384,7 @@
 	                    <div class="col-lg-12 text-center">
 	                        <li>
 	                        	<button class="btn btn-xl" onclick="switchLR('login');switchLR('register');">Need account ?</button>
-                                <a href="##" class="btn btn-xl">Login!</a>
+                                <button type="submit" class="btn btn-xl">Login Now !</button>
 	                        </li>
 	                    </div>
                     </div>
@@ -376,13 +404,12 @@
                         <p class="help-block text-danger"></p>
                     </div>
                     <div class="col-lg-12 text-center">
-                        <button class="btn btn-xl" onclick="switchLR('login');switchLR('register');">Already register?</button>
-                        <button type="submit" class="btn btn-xl">Register !</button>
+                        <button class="btn btn-xl" onclick="switchLR('login');switchLR('register');">Already register ?</button>
+                        <button type="submit" class="btn btn-xl">Register Now !</button>
                     </div>
                 </div>
                 <div class="clearfix"></div>
             </div>
-        
         </div>
     </section>
 
@@ -426,6 +453,12 @@
 
     <!-- Theme JavaScript -->
     <script src="js/agency.min.js"></script>
+
+    <script type="text/javascript"> 
+        jQuery(document).ready(function() { 
+            $('#thumbnails').simplethumbs({slideshow: '#imageview'}); 
+        }); 
+    </script> 
 
 </body>
 
