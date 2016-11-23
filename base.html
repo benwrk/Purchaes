@@ -338,7 +338,7 @@
         <div class="container">
             <div class="row">
                <div class="col-md-3"></div>
-                <div class="col-md-6 text-center">
+                <div class="col-md-6" id="login" style="display:block;">
                     <h2 class="section-heading">Login</h2>
                     <div class="form-group">
                         <div class="form-group">
@@ -355,13 +355,12 @@
 	                    </div>
 	                    <div class="col-lg-12 text-center">
 	                        <li>
-	                        	<a href="javascript:showhide('register')" class="btn btn-xl">Need account ?</a>
-	                        	<a href="##" class="btn btn-xl">Login !</a>
+	                        	<button class="btn btn-xl" onclick="switchLR('login');switchLR('register');">Need account ?</button>
+                                <a href="##" class="btn btn-xl">Login!</a>
 	                        </li>
 	                    </div>
                     </div>
                 </div>
-               </div>
                 <div class="col-md-6" div id="register" style="display:none;">
                     <h2 class="section-heading">Register</h2>
                     <div class="form-group">
@@ -377,12 +376,14 @@
                         <p class="help-block text-danger"></p>
                     </div>
                     <div class="col-lg-12 text-center">
+                        <button class="btn btn-xl" onclick="switchLR('login');switchLR('register');">Already register?</button>
                         <button type="submit" class="btn btn-xl">Register !</button>
                     </div>
                 </div>
                 <div class="clearfix"></div>
             </div>
-        s
+        
+        </div>
     </section>
 
     <footer>
