@@ -205,48 +205,138 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="modal-body">
-                            <!-- Item Details Go Here -->
-                            <div class="row" id="itemModel-detail" style="display:block;">
-                                <h2>Item Detail</h2>
-                                <h3 class="section-subheading text-muted">Round Icon</h3><br>
-						        <div class="col-md-3">
-                                    <div class="gallery" align="center"><br />
-                                        <div class="preview" align="center">
-                                            <img name="preview" src="img/items/sample1.jpg" alt="">
-                                        </div>
-                                        <div class="thumbnails">
-                                            <img onmouseover="preview.src=img1.src" name="img1" src="img/items/sample1.jpg" alt=""/>
-                                            <img onmouseover="preview.src=img2.src" name="img2" src="img/items/sample2.jpg" alt=""/>
-                                            <img onmouseover="preview.src=img3.src" name="img3" src="img/items/sample3.jpg" alt=""/>
+                <div class="container">
+                    <div id="itemDetail" style="display:block;">
+                        <div class="col-xs-12 col-sm-12">
+                            <h2 class="section-heading">Item Detail</h2>
+                            <h3 class="section-subheading text-muted">Show items details</h3><br/>
+                        </div>
+                        <div class="row row-offcanvas row-offcanvas-right">
+                            <div class="col-xs-12 col-sm-4 sidebar-offcanvas" style="margin-left: 20px;">
+                                <div class="gallery" align="center"><br />
+                                    <div class="preview" align="center">
+                                        <img name="preview" src="img/items/sample1.jpg" alt="">
+                                    </div>
+                                    <div class="thumbnails">
+                                        <img onmouseover="preview.src=img1.src" name="img1" src="img/items/sample1.jpg" alt=""/>
+                                        <img onmouseover="preview.src=img2.src" name="img2" src="img/items/sample2.jpg" alt=""/>
+                                        <img onmouseover="preview.src=img3.src" name="img3" src="img/items/sample3.jpg" alt=""/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-5" style="margin-top: 20px; margin-left: 20px;" align="left">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Created Date</span>
+                                        <input type="text" class="form-control" readonly value="26-Nov-2016">
+                                    </div><br>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Valid For</span>
+                                        <input type="text" class="form-control" readonly value="3">
+                                        <span class="input-group-addon">Hours</span>
+                                    </div><br>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Item Name</span>
+                                        <input type="text" class="form-control" readonly value="RED BG">
+                                    </div><br>
+                                     <div class="input-group">
+                                        <span class="input-group-addon">Brand</span>
+                                        <input type="text" class="form-control" readonly value="Apple">
+                                    </div><br>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Category</span>
+                                        <input type="text" class="form-control" readonly value="Food">
+                                    </div><br>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Maximum Price</span>
+                                        <input type="text" class="form-control" readonly value="100">
+                                        <span class="input-group-addon">THB</span>
+                                    </div><br>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Tags</span>
+                                        <input type="text" class="form-control" readonly value="red, bg , color">
+                                    </div><br>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Description</span>
+                                        <input type="text" class="form-control" readonly value="It's a background">
+                                    </div><br>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-2 sidebar-offcanvas" style="margin-top: 20px; margin-left: 20px;">
+                                <div class="list-group">
+                                    <a href="#" class="list-group-item" onclick="switchLR('itemDetail');switchLR('itemDetail');">Item Details</a>
+                                    <a href="#" class="list-group-item" onclick="switchLR('itemDetail');switchLR('viewoffer');">View Offer List</a>
+                                    <a href="#" class="list-group-item" onclick="switchLR('itemDetail');switchLR('offernow');">Offer Now !</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- end item detail body-->
+
+                    <div id="viewoffer" style="display:none;">
+                        <div class="col-xs-12 col-sm-12">
+                            <h2 class="section-heading">View Offer List</h2>
+                            <h3 class="section-subheading text-muted">Show all list of offer</h3><br/>
+                        </div>
+                        <div class="row row-offcanvas row-offcanvas-right">
+                            <div class="col-xs-12 col-sm-9" style="margin-top: 20px; margin-left: 20px;" align="left">
+                                <div class="form-group">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <div class="table-container">
+                                                <tr data-status="pagado">
+                                                    <td onclick="location.href='#'">
+                                                        <div class="media">
+                                                            <a href="" class="pull-left">
+                                                                <img src="img/items/sample1.jpg" class="media-photo" height="75" width="75">
+                                                            </a>
+                                                            <div class="media-body">
+                                                                <span class="media-meta pull-right">Nov. 26, 2016, 12:28 p.m.</span>
+                                                                <h4 class="title" href="/item/offer-detail/?id=1">
+                                                                    Title
+                                                                </h4>
+                                                                <p class="summary" style="overflow: hidden;text-overflow: ellipsis;">Details</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </div>
                                         </div>
                                     </div>
-						        </div>
-
-                                <div id="content-container" align="left">
-						            <div class="form-group">
-                                        <p>Create Date : 23-Nov-2016</p>
-                                        <p>Valid For : 24 Hours</p>
-                                        <p>Item Name : Round Icon</p>
-                                        <p>Brand : Icon</p>
-                                        <p>Category : House</p>
-                                        <p>Max Accepted Price : 100 THB</p>
-                                        <p>Tags : Icon</p>
-                                        <p>Description : It's an icon</p>
-                                        <button class="btn btn-xl" onclick="switchLR('itemModel-detail');switchLR('itemModel-detail');">Item Detail</button>
-                                        <button class="btn btn-xl" onclick="switchLR('itemModel-detail');switchLR('itemModel-detail');">View Offer</button>
-                                        <button class="btn btn-xl" onclick="switchLR('itemModel-detail');switchLR('itemModel-detail');">Offer Now !</button>
-						            </div>
-						        </div>
-						    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-2 sidebar-offcanvas" style="margin-top: 20px; margin-left: 20px;">
+                                <div class="list-group">
+                                    <a href="#" class="list-group-item" onclick="switchLR('viewoffer');switchLR('itemDetail');">Item Details</a>
+                                    <a href="#" class="list-group-item" onclick="switchLR('viewoffer');switchLR('viewoffer');">View Offer List</a>
+                                    <a href="#" class="list-group-item" onclick="switchLR('viewoffer');switchLR('offernow');">Offer Now !</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                    </div><!-- end view offer -->
+
+                    <div id="offernow" style="display:none;">
+                        <div class="col-xs-12 col-sm-12">
+                            <h2 class="section-heading">Offer an item</h2>
+                            <h3 class="section-subheading text-muted">listing an offer</h3><br/>
+                        </div>
+                        <div class="row row-offcanvas row-offcanvas-right">
+                            <div class="col-xs-12 col-sm-9" style="margin-top: 20px; margin-left: 20px;" align="left">
+                                
+                            </div>
+                            <div class="col-xs-12 col-sm-2 sidebar-offcanvas" style="margin-top: 20px; margin-left: 20px;">
+                                <div class="list-group">
+                                    <a href="#" class="list-group-item" onclick="switchLR('offernow');switchLR('itemDetail');">Item Details</a>
+                                    <a href="#" class="list-group-item" onclick="switchLR('offernow');switchLR('viewoffer');">View Offer List</a>
+                                    <a href="#" class="list-group-item" onclick="switchLR('offernow');switchLR('offernow');">Offer Now !</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- end offer now -->
+                    
+                </div><!-- end container -->
+            </div><!-- end modal-content -->
+        </div><!-- end modal-dialog -->
+    </div><!-- end item detail -->
 
     <!-- Search Section -->
     <section id="search">
@@ -383,8 +473,8 @@
 	                    </div>
 	                    <div class="col-lg-12 text-center">
 	                        <li>
-	                        	<button class="btn btn-xl" onclick="switchLR('login');switchLR('register');">Need account ?</button>
-                                <button type="submit" class="btn btn-xl">Login Now !</button>
+	                        	<button class="btn btn-xl" onclick="switchLR('login');switchLR('register');" style="float: left;">Need account ?</button>
+                                <button type="submit" class="btn btn-xl" style="float: right;">Login Now !</button>
 	                        </li>
 	                    </div>
                     </div>
@@ -404,8 +494,8 @@
                         <p class="help-block text-danger"></p>
                     </div>
                     <div class="col-lg-12 text-center">
-                        <button class="btn btn-xl" onclick="switchLR('login');switchLR('register');">Already register ?</button>
-                        <button type="submit" class="btn btn-xl">Register Now !</button>
+                        <button class="btn btn-xl" onclick="switchLR('login');switchLR('register');" style="float: left;">Back to login</button>
+                        <button type="submit" class="btn btn-xl" style="float: right;">Register Now !</button>
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -427,14 +517,6 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-md-4">
-                    <ul class="list-inline quicklinks">
-                        <li><a href="#">Privacy Policy</a>
-                        </li>
-                        <li><a href="#">Terms of Use</a>
-                        </li>
-                    </ul>
-                </div>
             </div>
         </div>
     </footer>
@@ -453,12 +535,6 @@
 
     <!-- Theme JavaScript -->
     <script src="js/agency.min.js"></script>
-
-    <script type="text/javascript"> 
-        jQuery(document).ready(function() { 
-            $('#thumbnails').simplethumbs({slideshow: '#imageview'}); 
-        }); 
-    </script> 
 
 </body>
 
