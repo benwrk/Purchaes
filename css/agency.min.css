@@ -558,10 +558,10 @@ section#search {
 }
 
 section#listing {
-  background-color: #222222;
-  background-image: url('../img/polygon.png');
-  background-position: center;
-  background-repeat: no-repeat;
+  /*background-color: #222222;*/
+  background-image: url('../img/diamond.jpg');
+  /*background-position: center;*/
+  /*background-repeat: no-repeat;*/
 }
 
 .itemModel {
