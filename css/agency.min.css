@@ -293,17 +293,17 @@ section h3.section-subheading {
     padding: 150px 0;
   }
 }
-#home .post-item {
+#page_home .post-item {
   margin: 0 0 15px;
   right: 0;
 }
-#home .post-item .post-link {
+#page_home .post-item .post-link {
   display: block;
   position: relative;
   max-width: 400px;
   margin: 0 auto;
 }
-#home .post-item .post-link .post-hover {
+#page_home .post-item .post-link .post-hover {
   background: rgba(254, 209, 54, 0.9);
   position: absolute;
   width: 100%;
@@ -313,10 +313,10 @@ section h3.section-subheading {
   -webkit-transition: all ease 0.5s;
   -moz-transition: all ease 0.5s;
 }
-#home .post-item .post-link .post-hover:hover {
+#page_home .post-item .post-link .post-hover:hover {
   opacity: 1;
 }
-#home .post-item .post-link .post-hover .post-hover-content {
+#page_home .post-item .post-link .post-hover .post-hover-content {
   position: absolute;
   width: 100%;
   height: 20px;
@@ -326,91 +326,91 @@ section h3.section-subheading {
   margin-top: -12px;
   color: white;
 }
-#home .post-item .post-link .post-hover .post-hover-content i {
+#page_home .post-item .post-link .post-hover .post-hover-content i {
   margin-top: -12px;
 }
-#home .post-item .post-link .post-hover .post-hover-content h3,
-#home .post-item .post-link .post-hover .post-hover-content h4 {
+#page_home .post-item .post-link .post-hover .post-hover-content h3,
+#page_home .post-item .post-link .post-hover .post-hover-content h4 {
   margin: 0;
 }
-#home .post-item .post-caption {
+#page_home .post-item .post-caption {
   max-width: 400px;
   margin: 0 auto;
   background-color: white;
   text-align: center;
   padding: 25px;
 }
-#home .post-item .post-caption h4 {
+#page_home .post-item .post-caption h4 {
   text-transform: none;
   margin: 0;
 }
-#home .post-item .post-caption p {
+#page_home .post-item .post-caption p {
   font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: italic;
   font-size: 16px;
   margin: 0;
 }
-#home * {
+#page_home * {
   z-index: 2;
 }
 @media (min-width: 767px) {
-  #home .post-item {
+  #page_home .post-item {
     margin: 0 0 30px;
   }
 }
-section#profile {
+section#page_profile {
   background-color: #222222;
   background-image: url('../img/map-image.png');
   background-position: center;
   background-repeat: no-repeat;
 }
-section#profile .section-heading {
+section#page_profile .section-heading {
   color: white;
 }
-section#profile .form-group {
+section#page_profile .form-group {
   margin-bottom: 25px;
 }
-section#profile .form-group input,
-section#profile .form-group textarea {
+section#page_profile .form-group input,
+section#page_profile .form-group textarea {
   padding: 20px;
 }
-section#profile .form-group input.form-control {
+section#page_profile .form-group input.form-control {
   height: auto;
 }
-section#profile .form-group textarea.form-control {
+section#page_profile .form-group textarea.form-control {
   height: 236px;
 }
-section#profile .form-control:focus {
+section#page_profile .form-control:focus {
   border-color: #fed136;
   box-shadow: none;
 }
-section#profile ::-webkit-input-placeholder {
+section#page_profile ::-webkit-input-placeholder {
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   font-weight: 700;
   color: #eeeeee;
 }
-section#profile :-moz-placeholder {
+section#page_profile :-moz-placeholder {
   /* Firefox 18- */
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   font-weight: 700;
   color: #eeeeee;
 }
-section#profile ::-moz-placeholder {
+section#page_profile ::-moz-placeholder {
   /* Firefox 19+ */
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   font-weight: 700;
   color: #eeeeee;
 }
-section#profile :-ms-input-placeholder {
+section#page_profile :-ms-input-placeholder {
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   font-weight: 700;
   color: #eeeeee;
 }
-section#profile .text-danger {
+section#page_profile .text-danger {
   color: #e74c3c;
 }
 footer {
@@ -550,14 +550,14 @@ body {
   webkit-tap-highlight-color: #fed136;
 }
 
-section#search {
+section#page_search {
   background-color: #222222;
   background-image: url('../img/hexagon.png');
   background-position: center;
   background-repeat: no-repeat;
 }
 
-section#listing {
+section#page_listing {
   background-color: #222222;
   background-image: url('../img/diamond.jpg');
   background-position: center;
