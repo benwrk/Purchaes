@@ -13,7 +13,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -23,6 +23,7 @@
 
     <!-- Theme CSS -->
     <link href="css/agency.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="img/logo.png">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -202,8 +203,7 @@
 
                     <div id="itemDetail" style="display:block;">
                         <div class="col-xs-12 col-sm-12">
-                            <h2 class="section-heading">Item Detail</h2>
-                            <h3 class="section-subheading text-muted">Show item details</h3><br/>
+                            <h2 class="section-heading">Item Detail</h2><br><br>
                         </div>
                         <div class="row row-offcanvas row-offcanvas-right">
                             <div class="col-xs-12 col-sm-4 sidebar-offcanvas" style="margin-left: 20px;">
@@ -268,8 +268,7 @@
 
                     <div id="viewoffer" style="display:none;">
                         <div class="col-xs-12 col-sm-12">
-                            <h2 class="section-heading">View Offer List</h2>
-                            <h3 class="section-subheading text-muted">Show all list of offer</h3><br/>
+                            <h2 class="section-heading">View Offer List</h2><br><br>
                         </div>
                         <div class="row row-offcanvas row-offcanvas-right">
                             <div class="col-xs-12 col-sm-9" style="margin-top: 20px; margin-left: 20px;" align="left">
@@ -358,8 +357,7 @@
 
                     <div id="offernow" style="display:none;">
                         <div class="col-xs-12 col-sm-12">
-                            <h2 class="section-heading">Offer This item</h2>
-                            <h3 class="section-subheading text-muted">listing an offer</h3><br/>
+                            <h2 class="section-heading">Offer This item</h2><br><br>
                         </div>
                         <div class="row row-offcanvas row-offcanvas-right">
                             <div class="col-xs-12 col-sm-4 sidebar-offcanvas" style="margin-left: 20px;">
@@ -448,7 +446,7 @@
 
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-xl">Delete it !</button>
-                                        <button type="submit" class="btn btn-xl">I want this !</button>
+                                        <a href="#" class="btn btn-xl" onclick="switchLR('offerdetail');switchLR('payment');">Purchase now !</a>
                                     </div>
                                 </div>
                             </div>
@@ -459,6 +457,134 @@
                             </div>
                         </div>
                     </div><!-- end offer detail -->
+
+                    <div id="payment" style="display:none;">
+                        <div class="col-xs-12 col-sm-12">
+                            <h2 class="section-heading">Payment</h2><br><br>
+                        </div>
+                        <div class="row row-offcanvas row-offcanvas-right">
+
+                            <div id="payment_main" style="display:block;">
+                                <div class="col-xs-12 col-sm-3 sidebar-offcanvas" style="margin-left: 20px;">
+                                    <div class="form-group">
+                                        <h3 class="section-heading">Payment Method</h3>
+                                        <div class="list-group">
+                                        <a href="#" class="list-group-item" onclick="switchLR('payment_main');switchLR('payment_paypal');">Paypal</a>
+                                        <a href="#" class="list-group-item" onclick="switchLR('payment_main');switchLR('payment_visa');">Visa</a>
+                                        <a href="#" class="list-group-item" onclick="switchLR('payment_main');switchLR('payment_master');">MasterCard</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6" style="margin-top: 0px; margin-left: 20px;" align="left">
+                                    <div class="form-group">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="payment_paypal" style="display:none;">
+                                <div class="col-xs-12 col-sm-3 sidebar-offcanvas" style="margin-left: 20px;">
+                                    <div class="form-group">
+                                        <h3 class="section-heading">Payment Method</h3>
+                                        <div class="list-group">
+                                        <a href="#" class="list-group-item" onclick="switchLR('payment_paypal');switchLR('payment_paypal');">Paypal</a>
+                                        <a href="#" class="list-group-item" onclick="switchLR('payment_paypal');switchLR('payment_visa');">Visa</a>
+                                        <a href="#" class="list-group-item" onclick="switchLR('payment_paypal');switchLR('payment_master');">MasterCard</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6" style="margin-left: 20px;" align="left">
+                                    <div class="form-group"">
+                                        <h3 class="section-heading">Paypal</h3>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Username</span>
+                                            <input type="text" class="form-control" aria-label="Amount">
+                                        </div><br>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Password</span>
+                                            <input type="text" class="form-control" aria-label="Amount">
+                                        </div><br>
+                                        <div class="text-center">
+                                            <a href="#" class="btn btn-xl" onclick="switchLR('');switchLR('');">Continue</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="payment_visa" style="display:none;">
+                                <div class="col-xs-12 col-sm-3 sidebar-offcanvas" style="margin-left: 20px;">
+                                    <div class="form-group">
+                                        <h3 class="section-heading">Payment Method</h3>
+                                        <div class="list-group">
+                                        <a href="#" class="list-group-item" onclick="switchLR('payment_visa');switchLR('payment_paypal');">Paypal</a>
+                                        <a href="#" class="list-group-item" onclick="switchLR('payment_visa');switchLR('payment_visa');">Visa</a>
+                                        <a href="#" class="list-group-item" onclick="switchLR('payment_visa');switchLR('payment_master');">MasterCard</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6" style="margin-left: 20px;" align="left">
+                                    <div class="form-group">
+                                        <h3 class="section-heading">Visa</h3>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Card number</span>
+                                            <input type="text" class="form-control" aria-label="Amount">
+                                        </div><br>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Expiration date</span>
+                                            <input type="text" class="form-control" aria-label="Amount">
+                                        </div><br>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Security code</span>
+                                            <input type="text" class="form-control" aria-label="Amount">
+                                        </div><br>
+                                        <div class="text-center">
+                                            <a href="#" class="btn btn-xl" onclick="switchLR('');switchLR('');">Continue</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="payment_master" style="display:none;">
+                                <div class="col-xs-12 col-sm-3 sidebar-offcanvas" style="margin-left: 20px;">
+                                    <div class="form-group">
+                                        <h3 class="section-heading">Payment Method</h3>
+                                        <div class="list-group">
+                                        <a href="#" class="list-group-item" onclick="switchLR('payment_master');switchLR('payment_paypal');">Paypal</a>
+                                        <a href="#" class="list-group-item" onclick="switchLR('payment_master');switchLR('payment_visa');">Visa</a>
+                                        <a href="#" class="list-group-item" onclick="switchLR('payment_master');switchLR('payment_master');">MasterCard</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6" style="margin-left: 20px;" align="left">
+                                    <div class="form-group">
+                                        <h3 class="section-heading">MasterCard</h3>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Card number</span>
+                                            <input type="text" class="form-control" aria-label="Amount">
+                                        </div><br>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Expiration date</span>
+                                            <input type="text" class="form-control" aria-label="Amount">
+                                        </div><br>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Security code</span>
+                                            <input type="text" class="form-control" aria-label="Amount">
+                                        </div><br>
+                                        <div class="text-center">
+                                            <a href="#" class="btn btn-xl" onclick="switchLR('');switchLR('');">Continue</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-2 sidebar-offcanvas" style="margin-top: 20px; margin-left: 20px;">
+                                <div class="list-group">
+                                    <a href="#" class="list-group-item" onclick="switchLR('payment');switchLR('offerdetail');">Back to offer info</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div><!-- end payment -->
                     
                 </div><!-- end container -->
             </div><!-- end modal-content -->
@@ -580,7 +706,7 @@
                         <div class="col-md-1">
                         </div>
                         <div class="col-md-5">
-                            <h3 class="section-heading">List</h2>
+                            <h3 class="section-heading">List</h3>
                             <div class="input-group">
                                 <span class="input-group-addon">Listing Title</span>
                                 <input type="text" class="form-control" aria-label="Amount">
@@ -604,7 +730,7 @@
                             </div><br>
                         </div>
                         <div class="col-md-5">
-                            <h3 class="section-heading">Item</h2>
+                            <h3 class="section-heading">Item</h3>
                             <div class="form-group">
                                 <div class="input-group">
                                     <span class="input-group-addon">Item Name</span>

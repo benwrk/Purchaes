@@ -616,3 +616,8 @@ input {
   height: 350px;
   border-radius: 15px;
 }
+
+.imglogo img {
+   height:40px;
+   width:120px;
+}
