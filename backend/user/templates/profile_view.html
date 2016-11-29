@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %}
+    profile - {{ webuser.username }}
+{% endblock %}
+{% block body %}
+    <style type="text/css">
+        img {
+            width: 250px;
+        }
+        .profile {
+            margin-top: 20px;
+        }
+    </style>
+    <div class="text-center profile">
+        <img src="https://s21.postimg.org/rqlzf9hs7/account_img.png">
+        <h1>{{ webuser.username }}</h1>
+        <h3>{{ webuser.email }}</h3>
+        <h3>{{ webuser.bio }}</h3>
+    </div>
+    {% for listing in  listings%}
+        <h3>{{ listing.title }}</h3>
+        <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="table-container">
+                <table class="table table-filter">
+                    <tbody>
+                    {% for offer in offers %}
+                        {% if offer.listing == listing %}
+                            <tr data-status="pagado">
+                                <td>
+                                    <div class="ckbox">
+                                        <input type="checkbox" id="checkbox1">
+                                        <label for="checkbox1"></label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="javascript:;" class="star">
+                                        <i class="glyphicon glyphicon-star"></i>
+                                    </a>
+                                </td>
+                                <td onclick="location.href='{% url 'item:offer-detail' %}?id={{ offer.id }}'">
+                                    <div class="media">
+                                        <a href="" class="pull-left">
+                                            <img src="{% with offer.image.all|first as image %}{{image.image.url }}{% endwith %}" class="media-photo" height="50" width="50">
+                                        </a>
+                                        <div class="media-body">
+                                            <span class="media-meta pull-right">{{ offer.created_date }}</span>
+                                            <h4 class="title" href="{% url 'item:offer-detail' %}?id={{ offer.id }}" >
+                                                {{ offer.title }}
+                                            </h4>
+                                            <p class="summary" style="overflow: hidden;text-overflow: ellipsis;">{{ offer.description }}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+    {% endfor %}
+{% endblock %}
