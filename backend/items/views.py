@@ -4,6 +4,7 @@ from django.shortcuts import render,redirect
 from .models import *
 from django.views.generic import View
 from user.models import User
+import datetime
 from itertools import chain
 
 from django.views.generic import DetailView
@@ -212,3 +213,10 @@ def handle_uploaded_file(f):
         for chunk in f.chunks():
             destination.write(chunk)
 
+def isTimeUp(listings):
+    for i in listings:
+        if listings[i].created_date < datetime.datetime.now():
+            listings[i].isExpire = True
+        else:
+            listings[i].isExpire = False
+    return listings

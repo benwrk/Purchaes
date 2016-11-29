@@ -88,8 +88,8 @@ DATABASES = {
         'NAME': os.environ.get('PSQL_NAME', 'wsplab'),
         'USER': os.environ.get('PSQL_USER', 'wsp'),
         'PASSWORD': os.environ.get('PSQL_PASSWORD', '123456789'),
-        'HOST':'localhost',
-        'PORT':'',
+        'HOST':'128.199.192.241',
+        'PORT':"",
     }
 }
 
