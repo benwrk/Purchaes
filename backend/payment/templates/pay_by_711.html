@@ -2,44 +2,57 @@
 {% load staticfiles %}
 {% block title %}main{% endblock %}
 {% block body %}
-    <div class="row">
-{#    <script src="{% static "js/hasher.min.js" %}"></script>#}
+    <div class="row" xmlns="http://www.w3.org/1999/html">
+        {#    <script src="{% static "js/hasher.min.js" %}"></script>#}
+
+        <h1>Barcode</h1>
         <svg id="barcode"></svg>
+        <h3>Instruction</h3>
+        <p>
+            1: Go to any 7-11 store near you<br>
+            2: Show them the barcode<br>
+            3: Pay the payment<br>
+            4: Scan the recipe and upload by click next
+        </p>
+{#        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#payment">Next</button>#}
+         <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#payment">Next</button>
         <script src="https://cdn.jsdelivr.net/jsbarcode/3.3.7/JsBarcode.all.min.js"></script>
         <script>
 
             JsBarcode("#barcode", "{{ code }}");
         </script>
-
         <script src="{% static "style/dropzone.js" %}" type="javascript"></script>
 
-        <form class="form-group" id="listingForm" action="{% url 'payment:confirm' %}" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            recipe:
-            <div class="row">
-                <div class="col-md-6">
-                    <input class="form" type="file" name="image"  id="imgInp" accept="image/*" multiple><br>
-                </div>
-                <div class="col-md-6">
-                    <div style="width: 500px; height: 100%;  border: 2px solid;border-radius: 25px;">
-                        <img id="blah" src="#" alt="your image" width="500" style="border-radius: 25px;"/>
+
+        <div class="collapse" id="payment">
+            <form class="form-group" id="listingForm" action="{% url 'payment:confirm' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                recipe:
+                <div class="row">
+                    <div class="col-md-6">
+                        <input class="form" type="file" name="image"  id="imgInp" accept="image/*" multiple><br>
+                    </div>
+                    <div class="col-md-6">
+                        <div style="width: 500px; height: 100%;  border: 2px solid;border-radius: 25px;">
+                            <img id="blah" src="" width="500" style="border-radius: 25px;"/>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div id="recipe_info" class="row">
-                Tracker:
-                <input class="form-control" type="text" id="tracker"><br>
-                Name:
-                <input class="form-control" type="text" id="name"><br>
-                Recipe Code:
-                <input class="form-control" type="text" id="recipe_code"><br>
-                <in
-            </div>
-            <input name="offer_id" value="{{ offer_id }}" type="hidden">
-            <input name="listing_id" value="{{ listing_id }}" type="hidden">
-            <input class="btn btn-primary" type="button" onclick="sub()" value="submit">
-        </form>
-
+                <div id="recipe_info" class="row">
+                    Tracker:
+                    <input class="form-control" type="text" id="tracker"><br>
+                    Name:
+                    <input class="form-control" type="text" id="name"><br>
+                    Recipe Code:
+                    <input class="form-control" type="text" id="recipe_code"><br>
+                    <in
+                </div>
+                <input name="offer_id" value="{{ offer_id }}" type="hidden">
+                <input name="listing_id" value="{{ listing_id }}" type="hidden">
+                <input class="btn btn-primary" type="submit"  value="submit">
+            </form>
+        </div>
+    </div>
     <script>
         function readURL(input) {
 
@@ -143,4 +156,5 @@
 
 
     </script>
+
 {% endblock %}
