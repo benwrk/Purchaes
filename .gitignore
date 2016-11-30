@@ -257,6 +257,6 @@ migrations
 *.sqlite3
 __pycache__
 *.pyc
-env
+*env
 .env
 staticfiles/
