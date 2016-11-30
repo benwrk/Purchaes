@@ -4,5 +4,6 @@ from . import views
 app_name = 'home'
 urlpatterns = [
     url(r'^market',views.market,name='market'),
+    url(r'^redirect',views.redirect,name='redirect'),
     url(r'^', views.index, name='home'),
 ]

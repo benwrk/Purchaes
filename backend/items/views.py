@@ -143,6 +143,7 @@ def item_search(request):
         print(tag.name)
     lists = []
     if len(keyword)>0:
+        print(Tag.objects.filter(name__icontains=keyword))
         tags = Listing.objects.filter(tags__in=Tag.objects.filter(name__icontains=keyword))
         for tag in tags.all():
             lists.append(tag)
@@ -201,6 +202,7 @@ class offer_create(View):
             #     return custom_redirect('item:offer-detail', 'id=' + str(Offer.objects.get(title=request.POST['title']).id))
 def offer_detail(request):
     offer = Offer.objects.get(id=request.GET.get('id',''))
+    offer.priced = offer.price*100
     return render(request,'offer_detail.html',{"offer":offer,"valid_for_width":offer.valid_for/10})
 
 def offer_search(request):
@@ -213,10 +215,14 @@ def handle_uploaded_file(f):
         for chunk in f.chunks():
             destination.write(chunk)
 
-def isTimeUp(listings):
-    for i in listings:
-        if listings[i].created_date < datetime.datetime.now():
-            listings[i].isExpire = True
+def isTimeUp(list):
+    for i in list:
+        if list[i].created_date < datetime.datetime.now():
+            list[i].isExpire = True
         else:
-            listings[i].isExpire = False
-    return listings
+            list[i].isExpire = False
+    return list
+
+
+def confirm(request):
+    return None

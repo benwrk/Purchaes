@@ -38,8 +38,62 @@
     {% endfor %}
 
     </div><br>
-    <input class="btn btn-primary" type="button" onclick="" value="Accept">
+    <input class="btn btn-primary" type="button" data-toggle="dropdown" onclick="" value="Accept">
+
     <input class="btn btn-danger" type="button" onclick="" value="Delete">
+    <ul class="dropdown-menu dropdown-menu">
+        <li>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+             {% csrf_token %}
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----">
+            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
+        </li>
+        <li>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+             {% csrf_token %}
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="hosted_button_id" value="26FC3W6D5ZV52">
+            <input type="image" src="https://www.paypalobjects.com/en_GB/TH/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
+            <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+        </form>
+        </li>
+        <li>
+        <button class="button" onclick='window.location.href="https://www.tmtopup.com/topup/?uid=20488"'>True Money</button>
+        </li>
+        <li>
+        <form action="https://bitpay.com/checkout" method="post" >
+             {% csrf_token %}
+            <input type="hidden" name="action" value="checkout" />
+            <input type="hidden" name="posData" value="" />
+            <input type="hidden" name="data" value="i7nFnBu3g79/JAHeJV7AEpoIEKb0hQoMA2F0L9XCLbpFOnWODL0tqo56OkJldvP/i19zujmpZvY3X08k/oeRhU60N/WdrfCz6NCLcOC+P2uO5S1THVJrNDA7h+TffCOdkdvKRTQkUrpgmeN0Pi+3oh9WTeEN9Qg6Slo39NCbsyf+626xQvFYdvUApfQPFbwz" />
+            <input type="image" src="https://bitpay.com/img/button-large.png" border="0" name="submit" alt="BitPay, the easy way to pay with bitcoins." >
+            {#<img src="{% static "images/loading.gif" %}" alt="my image">#}
+        </form>
+        </li>
+        <li>
+        <form name="checkoutForm" method="POST" action="{% url "payment:confirm" %}">
+             {% csrf_token %}
+            <script type="text/javascript" src="https://cdn.omise.co/card.js"
+                    data-key="pkey_test_566ahc0zaoqustgckp7"
+                    data-image="http://bit.ly/customer_image"
+                    data-frame-label="Pucha.es"
+                    data-button-label="Pay with Omize"
+                    data-submit-label="Submit"
+                    data-location="yes"
+                    data-amount="{{ offer.priced}}"
+                    data-currency="thb"
+            >
+            </script>
+            <input name="offer_id" value="{{ offer.id }}" type="hidden">
+            <input name="listing_id" value="{{ offer.listing.id }}" type="hidden">
+            <!--the script will render <input type="hidden" name="omiseToken"> for you automatically-->
+        </form>
+        </li>
+    </ul>
+
     <script>
         var owl = $('.owl-carousel');
         owl.owlCarousel({

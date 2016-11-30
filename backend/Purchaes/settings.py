@@ -42,10 +42,14 @@ INSTALLED_APPS = [
     'home',
     'items',
     'user',
+    'djangosecure',
+    'sslserver'
 
 ]
-
+SECURE_SSL_REDIRECT = False
+# SECURE_SSL_REDIRECT = True
 MIDDLEWARE_CLASSES = [
+    'djangosecure.middleware.SecurityMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

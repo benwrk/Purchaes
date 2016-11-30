@@ -36,6 +36,7 @@ class Listing(models.Model):
     owner = models.ForeignKey(User)
     max_accepted_price = models.DecimalField(max_digits=10, decimal_places=2)
     tags = models.ManyToManyField(Tag)
+    is_valid = models.BooleanField(default=True)
 
 class Offer(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
@@ -47,6 +48,7 @@ class Offer(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image = models.ManyToManyField(Image)
     tags = models.ManyToManyField(Tag)
+    is_valid = models.BooleanField(default=True)
 
 class Transaction(models.Model):
     committed_date = models.DateTimeField(auto_now_add=True)

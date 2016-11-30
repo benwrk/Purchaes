@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}main{% endblock %}
+{% block body %}
+    <div class="row">
+{#    <script src="{% static "js/hasher.min.js" %}"></script>#}
+        <svg id="barcode"></svg>
+        <script src="https://cdn.jsdelivr.net/jsbarcode/3.3.7/JsBarcode.all.min.js"></script>
+        <script>
+
+            JsBarcode("#barcode", "{{ code }}");
+        </script>
+
+        <script src="{% static "style/dropzone.js" %}" type="javascript"></script>
+
+        <form class="form-group" id="listingForm" action="{% url 'payment:confirm' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            recipe:
+            <div class="row">
+                <div class="col-md-6">
+                    <input class="form" type="file" name="image"  id="imgInp" accept="image/*" multiple><br>
+                </div>
+                <div class="col-md-6">
+                    <div style="width: 500px; height: 100%;  border: 2px solid;border-radius: 25px;">
+                        <img id="blah" src="#" alt="your image" width="500" style="border-radius: 25px;"/>
+                    </div>
+                </div>
+            </div>
+            <div id="recipe_info" class="row">
+                Tracker:
+                <input class="form-control" type="text" id="tracker"><br>
+                Name:
+                <input class="form-control" type="text" id="name"><br>
+                Recipe Code:
+                <input class="form-control" type="text" id="recipe_code"><br>
+                <in
+            </div>
+            <input name="offer_id" value="{{ offer_id }}" type="hidden">
+            <input name="listing_id" value="{{ listing_id }}" type="hidden">
+            <input class="btn btn-primary" type="button" onclick="sub()" value="submit">
+        </form>
+
+    <script>
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah').attr('src', e.target.result);
+                    window.setTimeout(function(){
+                        document.getElementById("blah").src="{% static "images/loading.gif" %}";
+                        console.log(document.getElementById('imgInp').value)
+                        if(document.getElementById('imgInp').value.includes('1.jpg'))
+                            window.setTimeout(function(){
+                                document.getElementById("blah").src="{% static "images/recipe1.jpg" %}";
+                                window.setTimeout(function(){
+                                    document.getElementById("tracker").value = "16011698 002593"
+                                    document.getElementById("name").value = "นรวิชญ์ อุไรเลิศประเสริฐ"
+                                    document.getElementById("recipe_code").value = "001910068303600154"
+                                },1000);
+                            },5000);
+                        else if(document.getElementById("imgInp").value.includes('2.jpg'))
+                            window.setTimeout(function(){
+                                document.getElementById("blah").src="{% static "images/recipe2.jpg" %}";
+                                window.setTimeout(function(){
+                                    document.getElementById("tracker").value = "07631269 190149"
+                                    document.getElementById("name").value = "นรวิชญ์ อุไรเลิศประเสริฐ"
+                                    document.getElementById("recipe_code").value = "001910068303700156"
+                                },1000);
+                            },5000);
+                    }, 3000);
+
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#imgInp").change(function(){
+            readURL(this);
+        });
+
+        var AUTH_ID = "QWMzODM5M2g2U3o5OG1KVXNoeV9MU3RfTms5Q0FrbWNLYzB1ODV4dVJvNEJBNld2bk8zWTlZbXNHejh1V1VFOWFYdjJPcjJtTER3VURkR3E6RU9BcGtISmRMaUlOTzBMUzFzS29fU3FmQmJIMW5naktRZ1JzSlYzSUwxTFpiWDFPNTd3TFB4b0RDNE93cGtBZ2dITkEteVpZWUxuM3h6R2I";
+        $.ajax({
+            method: 'POST',
+            url: 'https://api.sandbox.paypal.com/v1/oauth2/token',
+            headers: {
+                Accept: 'application/json',
+                'Accept-Language': "es_US",
+                Authorization: 'Basic ' + AUTH_ID,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: {
+                grant_type: 'client_credentials'
+            }
+        }).done(function(res) {
+            console.log(res.access_token);
+            makePayment(res.access_token)
+            {#      resolve(res);#}
+        }).fail(function(res)  {
+            console.log('Error');
+            console.log(res);
+            {#      reject(res);#}
+        });
+        function makePayment(Access_Token) {
+
+            $.ajax({
+                method: 'POST',
+                url: 'https://api.sandbox.paypal.com/v1/payments/payment',
+                headers: {
+                    Accept: 'application/json',
+                    'Accept-Language': "es_US",
+                    Authorization: 'Bearer A101.gFVrvtnfpWpZ5hE417fb3qSbEWXyHSwjEyrSP1AnXDoWSkcCi2NXnMy-F3WmerlI.MiJQ4w7cRGxQT2JD0WL27k1VOJK' ,
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                data: {
+                    "intent":"sale",
+                    "redirect_urls":{
+                        "return_url":"http://128.199.192.241:8000",
+                        "cancel_url":"http://128.199.192.241:8000"
+                    },
+                    "payer":{
+                        "payment_method":"paypal"
+                    },
+                    "transactions":[
+                        {
+                            "amount":{
+                                "total":"100",
+                                "currency":"THB"
+                            }
+                        }
+                    ]
+                }
+            }).done(function(res) {
+                console.log(res);
+                {#      resolve(res);#}
+            }).fail(function(res)  {
+                console.log('Error');
+                console.log(res);
+                {#      reject(res);#}
+            });
+        }
+
+
+    </script>
+{% endblock %}

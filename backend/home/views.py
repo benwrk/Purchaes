@@ -7,3 +7,6 @@ def index(request):
 
 def market(request):
     return render(request,'market.html')
+
+def redirect(requst):
+    return render(request, 'index.html', {"listings": list(Listing.objects.all())[:6]})
