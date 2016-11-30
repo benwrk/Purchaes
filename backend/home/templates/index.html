@@ -62,27 +62,6 @@
         </div>
         <h3>Featured Items</h3>
 
-        <div class="row" style="margin: 10px 10px 10px 10px;">
-            {% for listing in listings %}
-                <div class="col-sm-6 col-md-4">
-
-                    <div class="thumbnail" onclick="location.href='{% url 'item:item-detail'%}?id={{ listing.id }}'">
-                        <img src="{{  listing.item.image.all.0.image.url }}" alt="..." style="border-radius: 5px; ">
-                        <div class="caption">
-                            <h5>{{ listing.title }}</h5>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="{{ listing.valid_for }}"
-                                     aria-valuemin="0" aria-valuemax="1000" style="width: calc({{ listing.valid_for}}/1000*100%)">
-                                    {{ listing.valid_for }}h left!!!
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            {% endfor %}
-
-        </div>
 
     </div>
 {% endblock %}

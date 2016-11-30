@@ -391,7 +391,6 @@
                                     </div><br>
                                     <span class="input-group-addon">Image</span>
                                     <input type="file" style="width:457px"><br><br>
-
                                     <button type="submit" class="btn btn-xl" style="margin-left: 125px;" >Offer Now !</button>
                                 </div>
                             </div>
@@ -692,73 +691,93 @@
     <!-- Listing Section -->
     <section id="page_listing">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Listing</h2>
+            <form id="form_valid" novalidate>
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading">Listing</h2>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="row">
-                        <div class="col-md-1">
-                        </div>
-                        <div class="col-md-5">
-                            <h3 class="section-heading">List</h3>
-                            <div class="input-group">
-                                <span class="input-group-addon">Listing Title</span>
-                                <input type="text" class="form-control" aria-label="Amount">
-                            </div><br>
-                            <div class="input-group">
-                                <span class="input-group-addon">Listing Description</span>
-                                <input type="text" class="form-control" aria-label="Amount">
-                            </div><br>
-                            <div class="input-group">
-                                <span class="input-group-addon">Valid for</span>
-                                <input type="text" class="form-control" aria-label="Amount">
-                                <span class="input-group-addon">Hours</span>
-                            </div><br>
-                            <div class="input-group">
-                                <span class="input-group-addon">Brand</span>
-                                <input type="text" class="form-control" aria-label="Amount">
-                            </div><br>
-                            <div class="input-group">
-                                <span class="input-group-addon">Listing Tag</span>
-                                <input type="text" class="form-control" aria-label="Amount">
-                            </div><br>
-                        </div>
-                        <div class="col-md-5">
-                            <h3 class="section-heading">Item</h3>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <span class="input-group-addon">Item Name</span>
-                                    <input type="text" class="form-control" aria-label="Amount">
-                                </div><br>
-                                <div class="input-group">
-                                    <span class="input-group-addon">Item Description</span>
-                                    <input type="text" class="form-control" aria-label="Amount">
-                                </div><br>
-                                <div class="input-group">
-                                    <span class="input-group-addon">Categories</span>
-                                    <input type="text" class="form-control" aria-label="Amount">
-                                </div><br>
-                                <div class="input-group">
-                                    <span class="input-group-addon">Maximum price</span>
-                                    <input type="text" class="form-control" aria-label="Amount">
-                                    <span class="input-group-addon">THB</span>
-                                </div><br>
-                                <div class="input-group">
-                                    <span class="input-group-addon">Item Tag</span>
-                                    <input type="text" class="form-control" aria-label="Amount">
-                                </div><br>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-md-1">
                             </div>
-                        </div>
-                        <div class="clearfix"></div>
-                        <div class="col-lg-12 text-center">
-                            <button type="submit" class="btn btn-xl">Create a list Now !</button>
+                            <div class="col-md-5">
+                                <h3 class="section-heading">List</h3>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Listing Title</span>
+                                        <input type="text" class="form-control" aria-label="Amount" required data-validation-required-message="Please enter listing title.">
+                                    </div><p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Listing Description</span>
+                                        <input type="text" class="form-control" aria-label="Amount" required data-validation-required-message="Please enter listing description.">
+                                    </div><p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Valid for</span>
+                                        <input type="text" class="form-control" aria-label="Amount" required data-validation-required-message="Please enter valid for.">
+                                        <span class="input-group-addon">Hours</span>
+                                    </div><p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Brand</span>
+                                        <input type="text" class="form-control" aria-label="Amount" required data-validation-required-message="Please enter brand.">
+                                    </div><p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Listing Tag</span>
+                                        <input type="text" class="form-control" aria-label="Amount" required data-validation-required-message="Please enter listing tag.">
+                                    </div><p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <h3 class="section-heading">Item</h3>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Item Name</span>
+                                        <input type="text" class="form-control" aria-label="Amount" required data-validation-required-message="Please enter item name.">
+                                    </div><p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Item Description</span>
+                                        <input type="text" class="form-control" aria-label="Amount" required data-validation-required-message="Please enter item description.">
+                                    </div><p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Categories</span>
+                                        <input type="text" class="form-control" aria-label="Amount" required data-validation-required-message="Please enter categories .">
+                                    </div><p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Maximum price</span>
+                                        <input type="text" class="form-control" aria-label="Amount" required data-validation-required-message="Please enter maximum price.">
+                                        <span class="input-group-addon">THB</span>
+                                    </div><p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Item Tag</span>
+                                        <input type="text" class="form-control" aria-label="Amount" required data-validation-required-message="Please enter item tag.">
+                                    </div><p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-12 text-center">
+                                <button type="submit" class="btn btn-xl">Create a list Now !</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </section>
 
@@ -767,55 +786,57 @@
         <div class="container">
 
             <div id=login style="display:block;">
-                <div class="row">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-6">
-                        <h2 class="section-heading text-center">Login</h2><br><br>
-                        <div class="form-group">
+                <form id="form_valid" novalidate>
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <h2 class="section-heading text-center">Login</h2><br><br>
                             <div class="form-group">
-    	                        <input type="text" class="form-control" placeholder="Your Username *" id="login_username" required data-validation-required-message="Please enter your username." style="background-color: black">
-    	                        <p class="help-block text-danger"></p>
-                        	</div>
-                        	<div class="form-group">
-    	                        <input type="email" class="form-control" placeholder="(Or) Your Email *" id="login_email" required data-validation-required-message="Please enter your email." style="background-color: black">
-    	                        <p class="help-block text-danger"></p>
-                        	</div>
-    	                    <div class="form-group">
-    	                        <input type="password" class="form-control" placeholder="Your Password *" id="login_password" required data-validation-required-message="Please enter your password." style="background-color: black">
-    	                        <p class="help-block text-danger"></p>
-    	                    </div>
-    	                    <div class="col-lg-12 text-center">
-    	                        <li>
-    	                        	<button class="btn btn-xl" onclick="switchLR('login');switchLR('register');" style="float: left;">Need account ?</button>
-                                    <button class="btn btn-xl" onclick="switchLR('login');switchLR('profile');" style="float: right;">Login Now !</button>
-    	                        </li>
-    	                    </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Your Username *" required data-validation-required-message="Please enter your username." style="background-color: black">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Your Password *" required data-validation-required-message="Please enter your password." style="background-color: black">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="col-lg-12 text-center">
+                                    <li>
+                                        <button class="btn btn-xl" onclick="switchLR('login');switchLR('register');" style="float: left;">Need account ?</button>
+                                        <button type="submit" class="btn btn-xl" onclick="switchLR('login');switchLR('profile');" style="float: right;">Login Now !</button>
+                                        <button type="submit" class="btn btn-xl">TEST</button>
+                                    </li>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div><!-- end login -->
 
             <div id=register style="display:none;">
                 <div class="row">
                     <div class="col-md-3"></div>
-                    <div class="col-md-6">
-                        <h2 class="section-heading text-center">Register</h2><br><br>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Your Username *" id="regis_username" required data-validation-required-message="Please enter your username." style="background-color: black">
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Your Email *" id="regis_email" required data-validation-required-message="Please enter your email address." style="background-color: black">
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Your Password *" id="regis_password" required data-validation-required-message="Please enter your password." style="background-color: black">
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="col-lg-12 text-center">
-                            <button class="btn btn-xl" onclick="switchLR('register');switchLR('login');" style="float: left;">Back to login</button>
-                            <button class="btn btn-xl" onclick="switchLR('register');switchLR('profile');" style="float: right;">Register Now !</button>
-                        </div>
+                    <div class="col-md-6">\
+                        <form id="form_valid" novalidate>
+                            <h2 class="section-heading text-center">Register</h2><br><br>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Your Username *" required data-validation-required-message="Please enter your username." style="background-color: black">
+                                <p class="help-block text-danger"></p>
+                                </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Your Email *" required data-validation-required-message="Please enter your email." style="background-color: black">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Your Password *" required data-validation-required-message="Please enter your password." style="background-color: black">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="col-lg-12 text-center">
+                                <button class="btn btn-xl" onclick="switchLR('register');switchLR('login');" style="float: left;">Back to login</button>
+                                <button class="btn btn-xl" onclick="switchLR('register');switchLR('profile');" style="float: right;">Register Now !</button>
+                                <button type="submit" class="btn btn-xl">TEST</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div><!-- end register -->
@@ -928,6 +949,13 @@
 
     <!-- Theme JavaScript -->
     <script src="static/frontend/js/agency.min.js"></script>
+
+    <!-- Validation JavaScript -->
+    <script src="static/frontend/js/validation.js"></script>
+
+    <script>
+        $(function () { $("#form_valid input").not("[type=submit]").jqBootstrapValidation(); } );
+    </script>
 
 </body>
 
