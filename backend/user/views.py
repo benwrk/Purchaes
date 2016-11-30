@@ -20,6 +20,7 @@ def user_login(request):
     if user is not None:
         if user.is_active:
             login(request, user)
+            print('logged in')
             return redirect('home:home')
     return redirect('home:home')
 
