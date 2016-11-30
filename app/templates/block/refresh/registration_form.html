@@ -1,0 +1,27 @@
+﻿{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+            <h1>Register</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-xs-12 col-sm-8 col-lg-6">
+            <form class="form-group" action="{% url 'register' %}" method="post">
+                {% csrf_token %}
+                Username:<br>
+                <input class="form-control" type="text" name="username" id="register-form-username"><br>
+                Password:<br>
+                <input class="form-control" type="password" name="password" id="register-form-password"><br>
+                Email:<br>
+                <input class="form-control" type="email" name="email" id="register-form-email"><br>
+                Tell us about your self:<br>
+                <input class="form-control" type="text" name="bio" id="register-form-bio"><br>
+                <input class="btn btn-primary" type="submit" value="Register" id="register-form-register">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

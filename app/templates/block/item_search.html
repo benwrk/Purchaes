@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% block title %}
+{% endblock %}
+{% block content %}
+    <div class="row" style="margin: 10px 10px 10px 10px;">
+    {% for listing in listings  %}
+        <div class="col-sm-6 col-md-4">
+        <div class="thumbnail" onclick="location.href='{% url 'item:item-detail'%}?id={{ listing.id }}'">
+          <img src="{{ listing.item.image.all.0.image.url }}" alt="..." style="border-radius: 5px; ">
+          <div class="caption">
+              <h3>{{ listing.title }}</h3>
+              <h4>{{ listing.item.name }}</h4>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+
+{% endblock %}
+{% block side-nav %}
+    <label for="price-min">Min Price:</label>
+    <input type="range" name="price-min" id="price-min" value="200" min="0" max="1000">
+    <label for="price-min">Min Price:</label>
+    <input type="range" name="price-min" id="price-min" value="200" min="0" max="1000">
+{% endblock %}
