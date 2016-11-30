@@ -36,6 +36,32 @@ class Listing(models.Model):
     owner = models.ForeignKey(User)
     max_accepted_price = models.DecimalField(max_digits=10, decimal_places=2)
     tags = models.ManyToManyField(Tag)
+    
+    def getTimeLeft(self):
+        from datetime import datetime , timedelta
+
+
+        unaware = datetime.now()
+        created_date_test = (self.created_date+timedelta(hours=7)
+).replace(tzinfo=None)
+        today = unaware.replace(tzinfo=None)
+        time_dif = abs(today - created_date_test)
+        time_dif_total_hour = time_dif.days*24 + time_dif.seconds//3600
+        time_dif_total_second = time_dif.days * 24 * 3600 + time_dif.seconds
+        if time_dif_total_hour >= self.valid_for:
+            return 'Expired'
+        else:
+            remain_time_second = self.valid_for *3600 -  time_dif_total_second
+            if remain_time_second > 24 * 3600:
+                return str((remain_time_second // (24*3600))) + ' D ' + str((remain_time_second % (24*3600)) // 3600) + ' H'
+            else:
+                if remain_time_second > 3600:
+                    return str(remain_time_second // 3600) + ' H ' + str((remain_time_second % 3600) // 60) + ' M'
+                else:
+                    if remain_time_second > 60:
+                        return str(remain_time_second // 60) + ' M ' + str(remain_time_second % 60) + ' S'
+                    else:
+                        return str(remain_time_second) + ' S'      
 
 class Offer(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
