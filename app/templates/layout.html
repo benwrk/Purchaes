@@ -92,9 +92,13 @@
                     <a class="page-scroll" href="#page_profile">Profile</a>
                 </li>
                 {% else %}
-                <li><a href="{% url 'register' %}">Register</a></li>
+                <li>
+                    <a href="{% url 'register' %}">Register</a>
+                </li>
                 <li class="dropdown">
-                    <a class="dropdown" href="z#" data-toggle="dropdown"><strong>Login</strong></a>
+                    <a class="dropdown" href="z#" data-toggle="dropdown">
+                        <strong>Login</strong>
+                    </a>
                     <ul class="dropdown-menu loginmodal-container" style="padding: 15px; padding-bottom: 15px;">
                         <!-- Login form here -->
                         <form action="{% url 'login' %}" method="post" accept-charset="UTF-8">
@@ -122,9 +126,16 @@
     </div>
     <!-- /.container-fluid -->
 </nav>
-<br />
-<br />
-<br />
+<header>
+    <div class="container">
+        <div class="intro-text">
+            <div class="intro-lead-in">Welcome To Our Store!</div>
+            <div class="intro-heading">Find What You Want</div>
+            <a href="#page_home" class="page-scroll btn btn-xl">Let's go !</a>
+        </div>
+    </div>
+</header>
+
 {% block content %}
 {% endblock %}
 
